@@ -1,0 +1,7 @@
+Devlog
+
+wostlund at 2:56 P.M. EST:
+-Added devlog.txt to the repository
+
+wostlund at 2:57 P.M. EST:
+-Added design.pdf to the repository
