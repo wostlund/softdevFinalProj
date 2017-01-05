@@ -4,8 +4,8 @@ Created skeleton.
 stephanieY -- 2017-1-05 14:52
 Wrote basic.html and custom.css.
 
-wostlund -- 2017-1-05 2:56 P.M. EST:
+ostlundW -- 2017-1-05 2:56 P.M. EST:
 -Added devlog.txt to the repository
 
-wostlund -- 2017-1-05 2:57 P.M. EST:
+ostlundW -- 2017-1-05 2:57 P.M. EST:
 -Added design.pdf to the repository
