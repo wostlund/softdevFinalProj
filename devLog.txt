@@ -1,5 +1,0 @@
-stephanieY -- 2017-1-05 14:36
-Created skeleton.
-
-stephanieY -- 2017-1-05 14:52
-Wrote basic.html and custom.css.
