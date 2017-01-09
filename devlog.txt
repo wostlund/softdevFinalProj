@@ -1,26 +1,26 @@
 stephanieY -- 2017-1-05 14:36
-Created skeleton.
+- Created skeleton.
 
 stephanieY -- 2017-1-05 14:52
-Wrote basic.html and custom.css.
+- Wrote basic.html and custom.css.
 
 zichengZ -- 2017-01-05 14:53
 - Added more skeletons.
 
 ostlundW -- 2017-1-05 14:56
--Added devlog.txt to the repository
+- Added devlog.txt to the repository
 
 ostlundW -- 2017-1-05 14:57
--Added design.pdf to the repository
+- Added design.pdf to the repository
 
-venderbushW -- 2017-1-07 3:05 P.M. EST
-Registered for APIs, received keys
+venderbushW -- 2017-1-08 14:45
+- Skeleton app.py
 
-venderbushW -- 2017-1-08 2:45 P.M. ESt
-Skeleton app.py
+venderbushW -- 2017-1-07 15:05
+- Registered for APIs, received keys
 
-stephanieY -- 2017-1-09 2:21 P.M. EST
-Started basic.html and main.html. Added {% endblock %} to main.html. Edited main.html
+stephanieY -- 2017-1-09 14:21
+- Started basic.html and main.html. Added {% endblock %} to main.html. Edited main.html, changed color scheme in custom.css
 
 zichengZ -- 2017-01-09 14:53
 - Work on auth.py

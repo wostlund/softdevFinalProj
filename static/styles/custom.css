@@ -1,11 +1,11 @@
 body {
-    background-color: #2D3142;
-    color: #D8D5DB;
+    background-color: #215100;
+    color: #F2F2F2;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
 }
 #ctrlaltgift {
-    color: #B0D7FF;
+    color: #890808;
     font-family: 'Indie Flower', cursive;
     font-size: 40px;
 }
@@ -14,26 +14,35 @@ body {
 }
 
 #navbar {
-    background-color: black;
-    color: #D8D5DB;
+    background-color: #456D00;
+    color: #215200;
     border-color: transparent;
 }
 
+#navbar > li > a {
+    background-color:#890808;
+}
+
+#navbar > li > a:hover {
+    background-color:#B4B58B;
+}
+
+
 #landing {
-    background-color:
+    background-color: #890808;
 }
 
 #landingtitle {
     font-family: 'Indie Flower', cursive;
-    color: 
+    color: #F2F2F2;
 }
 
 #landingp {
     font-family:'Open Sans', sans-serif;
-    color:
+    color: #F2F2F2;
 }
 
 #landingp2 {
     font-family:'Open Sans', sans-serif;
-    color:
+    color:#F2F2F2;
 }
