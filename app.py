@@ -37,28 +37,28 @@ def search():
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/shop", methods = ["POST", "GET"])
-def search():
+def shop():
 	if ("username" in session):
 		return render_template('shop.html', title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/creategroup", methods = ["POST", "GET"])
-def search():
+def creategroup():
 	if ("username" in session):
 		return render_template('creategroup.html', title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/dashboard", methods = ["POST", "GET"])
-def search():
+def dashboard():
 	if ("username" in session):
 		return render_template('idashboard.html', title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/blacklist", methods = ["POST", "GET"])
-def search():
+def blacklist():
 	if ("username" in session):
 		return render_template('editblack.html', title = "Search", message = "");
 	else:
