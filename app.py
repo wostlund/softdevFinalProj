@@ -16,39 +16,53 @@ def root():
 	if ("logout" in form):
 		user = session["username"]
 		session.pop("username")
-		return render_template('main.html', title = "Login", message = "You have been logged out!", flag = "logout")
+		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "You have been logged out!")
 	if ("username" in session):
-		return render_template('main.html', title = "Landing", message = "Welcome, " + session["username"] + "!", flag = "login")
-	return render_template('main.html', title = "Login", message = "Enter your username and password:", flag = "logout")
-	return "Main Page";
+		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"] + "!")
+	return render_template('main.html', title = "Ctrl.Alt.Gift", message = "")
 
 @app.route("/login", methods = ["POST", "GET"])
 def login():
 	form = request.form
 	if ("login" in form):
 		session["username"] = username;
-		return "Main Page";
-	return "Login Page";
+		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "");
+	return render_template('login.html', title = "Login", message = "");
 
 @app.route("/search", methods = ["POST", "GET"])
 def search():
-	return "Search Page";
+	if ("username" in session):
+		return render_template('search.html', title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/shop", methods = ["POST", "GET"])
 def search():
-	return "Shop Page";
+	if ("username" in session):
+		return render_template('shop.html', title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/creategroup", methods = ["POST", "GET"])
 def search():
-	return "Create Group Page";
+	if ("username" in session):
+		return render_template('creategroup.html', title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/dashboard", methods = ["POST", "GET"])
 def search():
-	return "Dashboard Page";
+	if ("username" in session):
+		return render_template('idashboard.html', title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def search():
-	return "Blacklist Page";
+	if ("username" in session):
+		return render_template('editblack.html', title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 
 if __name__ == "__main__":
