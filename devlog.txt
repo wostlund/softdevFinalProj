@@ -4,8 +4,14 @@ Created skeleton.
 stephanieY -- 2017-1-05 14:52
 Wrote basic.html and custom.css.
 
-ostlundW -- 2017-1-05 2:56 P.M. EST
+zichengZ -- 2017-01-05 14:53
+- Added more skeletons.
+
+ostlundW -- 2017-1-05 14:56
 -Added devlog.txt to the repository
 
-ostlundW -- 2017-1-05 2:57 P.M. EST
+ostlundW -- 2017-1-05 14:57
 -Added design.pdf to the repository
+
+zichengZ -- 2017-01-09 14:53
+- Work on auth.py
