@@ -17,4 +17,4 @@ venderbushW -- 2017-1-08 2:45 P.M. ESt
 Skeleton app.py
 
 stephanieY -- 2017-1-09 2:21 P.M. EST
-Started basic.html and main.html. Added {% endblock %} to main.html. Edited main.html
+Started basic.html and main.html. Added {% endblock %} to main.html. Edited main.html, changed color scheme in custom.css
