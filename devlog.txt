@@ -11,4 +11,4 @@ ostlundW -- 2017-1-05 2:57 P.M. EST
 Added design.pdf to the repository
 
 stephanieY -- 2017-1-09 2:21 P.M. EST
-Started basic.html and main.html.
+Started basic.html and main.html. Added {% endblock %} to main.html.
