@@ -14,8 +14,26 @@ body {
 }
 
 #navbar {
-    background-color: #2D3142;
+    background-color: black;
     color: #D8D5DB;
     border-color: transparent;
 }
- 
+
+#landing {
+    background-color:
+}
+
+#landingtitle {
+    font-family: 'Indie Flower', cursive;
+    color: 
+}
+
+#landingp {
+    font-family:'Open Sans', sans-serif;
+    color:
+}
+
+#landingp2 {
+    font-family:'Open Sans', sans-serif;
+    color:
+}
