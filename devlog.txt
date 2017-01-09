@@ -13,5 +13,14 @@ ostlundW -- 2017-1-05 14:56
 ostlundW -- 2017-1-05 14:57
 -Added design.pdf to the repository
 
+venderbushW -- 2017-1-07 3:05 P.M. EST
+Registered for APIs, received keys
+
+venderbushW -- 2017-1-08 2:45 P.M. ESt
+Skeleton app.py
+
+stephanieY -- 2017-1-09 2:21 P.M. EST
+Started basic.html and main.html. Added {% endblock %} to main.html. Edited main.html
+
 zichengZ -- 2017-01-09 14:53
 - Work on auth.py

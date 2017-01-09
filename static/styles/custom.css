@@ -2,17 +2,38 @@ body {
     background-color: #2D3142;
     color: #D8D5DB;
     font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
 }
 #ctrlaltgift {
     color: #B0D7FF;
     font-family: 'Indie Flower', cursive;
+    font-size: 40px;
 }
 #form_head {
     color: #EAE8FF;
 }
- #authors {
-     color: #ADACB5;
-     font-family: 'Open Sans', sans-serif;
- }
 
- 
+#navbar {
+    background-color: black;
+    color: #D8D5DB;
+    border-color: transparent;
+}
+
+#landing {
+    background-color:
+}
+
+#landingtitle {
+    font-family: 'Indie Flower', cursive;
+    color: 
+}
+
+#landingp {
+    font-family:'Open Sans', sans-serif;
+    color:
+}
+
+#landingp2 {
+    font-family:'Open Sans', sans-serif;
+    color:
+}
