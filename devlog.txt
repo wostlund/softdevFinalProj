@@ -5,7 +5,10 @@ stephanieY -- 2017-1-05 14:52
 Wrote basic.html and custom.css.
 
 ostlundW -- 2017-1-05 2:56 P.M. EST
--Added devlog.txt to the repository
+Added devlog.txt to the repository
 
 ostlundW -- 2017-1-05 2:57 P.M. EST
--Added design.pdf to the repository
+Added design.pdf to the repository
+
+stephanieY -- 2017-1-09 2:21 P.M. EST
+Started basic.html and main.html.
