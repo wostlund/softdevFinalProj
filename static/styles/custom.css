@@ -20,11 +20,11 @@ body {
 }
 
 #navbar > li > a {
-    background-color:#890808;
+    color:#890808;
 }
 
 #navbar > li > a:hover {
-    background-color:#B4B58B;
+    color:#B4B58B;
 }
 
 
