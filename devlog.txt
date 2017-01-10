@@ -24,3 +24,6 @@ stephanieY -- 2017-1-09 14:21
 
 zichengZ -- 2017-01-09 14:53
 - Work on auth.py
+
+stephanieY -- 2017-01-10 14:42
+- Started login.html. Need to check if toggle works. JS needed for login.html
