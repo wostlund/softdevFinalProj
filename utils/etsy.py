@@ -5,7 +5,33 @@ import json, urllib2, datetime
 ### ETSY ###
 ############
 
-key = open("keys.txt", "r").read().strip().split("\n")[1]
-baseurl = "https://openapi.etsy.com/v2"
+key = open("../keys.txt", "r").read().strip().split("\n")[1]
+baseurl = "https://openapi.etsy.com/v2/"
 
 
+
+def search(terms, number):
+	urladd = "listings/active?keywords=" + terms + "&limit=" + str(number) + "&includes=Images:1&api_key=" + key
+	url = baseurl + urladd
+	curr = urllib2.urlopen(url)
+	req = curr.read()
+	data = json.loads(req)
+	#print data
+	resdict = data["results"]
+	reslist = []
+	for i in resdict:
+		newdict = {}
+		newdict["name"] = i["title"]
+		newdict["description"] = i["description"]
+		newdict["category"] = i["category_path"]
+		newdict["price"] = i["price"]
+		newdict["currency"] = i["currency_code"]
+		newdict["url"] = i["url"];
+		imgs = i["Images"][0]; #dictionary
+		newdict["imgurl"] = imgs["url_fullxfull"]
+		reslist.append(newdict)
+	
+	print reslist
+	print len(reslist)
+
+search("donkey", 100)
