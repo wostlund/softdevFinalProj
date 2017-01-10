@@ -27,3 +27,11 @@ zichengZ -- 2017-01-09 14:53
 
 stephanieY -- 2017-01-10 14:42
 - Started login.html. Need to check if toggle works. JS needed for login.html
+
+venderbushW -- 2017-1-10 2:44
+- Successfully pulled and parsed data from Etsy API
+- Implemented Etsy searching in Flask app
+
+zichengZ -- 2017-01-10 14:54
+- Add functions to data.py
+- Start database
