@@ -5,6 +5,7 @@ import csv
 import hashlib
 import os
 from flask import Flask, render_template, request, session, url_for
+from utils import etsy, amazon
 
 
 app = Flask(__name__)
@@ -38,8 +39,10 @@ def search():
 
 @app.route("/shop", methods = ["POST", "GET"])
 def shop():
+	form = request.form
 	if ("username" in session):
-		return render_template('shop.html', title = "Search", message = "");
+		searchstring = form["search"]
+		return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 25) message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 

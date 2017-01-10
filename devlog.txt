@@ -30,3 +30,4 @@ stephanieY -- 2017-01-10 14:42
 
 venderbushW -- 2017-1-10 2:44
 - Successfully pulled and parsed data from Etsy API
+- Implemented Etsy searching in Flask app
