@@ -40,4 +40,4 @@ venderbushW -- 2017-01-11 1:02
 - Roughly implemented login
 
 stephanieY -- 2017-01-11 14:42
-- Roughly implemented idashboard
+- Roughly implemented idashboard and creategroup, but not quite done yet.
