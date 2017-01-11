@@ -38,3 +38,6 @@ zichengZ -- 2017-01-10 14:54
 
 venderbushW -- 2017-01-11 1:02
 - Roughly implemented login
+
+stephanieY -- 2017-01-11 14:42
+- Roughly implemented idashboard
