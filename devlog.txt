@@ -35,3 +35,6 @@ venderbushW -- 2017-1-10 14:44
 zichengZ -- 2017-01-10 14:54
 - Add functions to data.py
 - Begin work on database functions
+
+venderbushW -- 2017-01-11 1:02
+- Roughly implemented login
