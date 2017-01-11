@@ -5,14 +5,15 @@
 import sqlite3, hashlib
 
 def connect():
-    name = "./data/<NAME TO ADD HERE>.db"
+    name = "./data.db"
     db = sqlite3.connect(name)
     return db
+
 def disconnect(db):
     db.commit()
     db.close()
 
-# Authorization Functions
+# Authentication Functions
 # ==========================================================================
 def login(username, password):
     username = username.lower()
@@ -37,7 +38,7 @@ def check_safe(username):
             return -1 # Invalid Character
     return 0 # Good
 
-def hash(password): # To Implement
+def hash(password):
     password = password + "this-is-some-nice-salt-and-pepper"
     password = hashlib.sha384(password).hexdigest()
     return password

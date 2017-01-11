@@ -60,6 +60,32 @@ def add_user(username, password, name, email):
     except:
         return False
 
+def add_group(groupname):
+    try:
+        db = connect()
+        c = db.cursor()
+        req = "INSERT INTO groupdata VALUES \
+               (%s, '%s', %s)"%(largest_groupid + 1, groupname, 0)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False
+
+# Helper Functions
+# ==========================================================================
+def largest_groupid():
+    db = connect()
+    c = db.cursor()
+    req = "SELECT groupid FROM groupdata"
+    data = c.execute(req)
+    maxid = -1
+    for entry in data:
+        if entry[0] > maxid:
+            maxid = entry[0]
+    disconnect(db)
+    return maxid
+
 # Initialization
 # ==========================================================================
 if (__name__ == "__main__"):
