@@ -34,4 +34,4 @@ venderbushW -- 2017-1-10 14:44
 
 zichengZ -- 2017-01-10 14:54
 - Add functions to data.py
-- Start database
+- Begin work on database functions
