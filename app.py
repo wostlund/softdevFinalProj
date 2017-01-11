@@ -5,7 +5,7 @@ import csv
 import hashlib
 import os
 from flask import Flask, render_template, request, session, url_for
-from utils import etsy, amazon
+from utils import etsy, amazon, auth
 
 
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def login():
 			return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
 		else:
 			auth.disconnect(db)
-			return return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
+			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
 	auth.disconnect(db)
 	return render_template('login.html', title = "Login", message = "");
 
@@ -53,7 +53,7 @@ def shop():
 	form = request.form
 	if ("username" in session):
 		searchstring = form["search"]
-		return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 25) message = "");
+		return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 25), message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
