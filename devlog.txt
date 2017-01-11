@@ -41,3 +41,6 @@ venderbushW -- 2017-01-11 1:02
 
 stephanieY -- 2017-01-11 14:42
 - Roughly implemented idashboard and creategroup, but not quite done yet.
+
+venderbushW -- 2017-01-11 16:02
+- Implemented price controls in etsy
