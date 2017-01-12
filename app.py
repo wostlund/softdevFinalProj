@@ -38,6 +38,13 @@ def login():
 		else:
 			auth.disconnect(db)
 			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
+	if ("register" in form):
+		if (auth.register(form["name"], form["username"], form["password"]) == 0):
+			auth.disconnect(db)
+			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
+		else:
+			auth.disconnect(db)
+			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
 	auth.disconnect(db)
 	return render_template('login.html', title = "Login", message = "");
 
