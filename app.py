@@ -60,10 +60,10 @@ def shop():
 	form = request.form
 	# if ("username" in session):
 	# 	searchstring = form["search"]
-	# 	return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 25), message = "");
+	# 	return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 24, price), message = "");
 	# else:
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('shop.html', title = "Shop"); #etsylist = etsy.search(searchstring, 25), message = "");
+	return render_template('shop.html', title = "Shop"); #etsylist = etsy.search(searchstring, 24, price), message = "");
 
 @app.route("/creategroup", methods = ["POST", "GET"])
 def creategroup():

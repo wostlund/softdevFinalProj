@@ -72,6 +72,29 @@ def add_group(groupname):
     except:
         return False
 
+def add_user_to_group(username, groupid):
+    try:
+        db = connect()
+        c = db.cursor()
+        req = "INSERT INTO groups \
+               (%s, '%s', %s)"%(groupid, username, username) # Unshuffled
+        c.execute(req)
+        req = "UPDATE groupdata \
+               SET members = members + 1 \
+               WHERE groupid = %s"%(groupid)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False
+
+def shuffle(groupid):
+    try:
+        
+        return True
+    except:
+        return False
+    
 # Helper Functions
 # ==========================================================================
 def largest_groupid():
