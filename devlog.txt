@@ -56,4 +56,5 @@ stephanieY -- 2017-01-11 9:56
 - Commented out custom.css for now
 - In process of implementing all templates except shop
 - Have yet to swap out sample text with jinja variables, match ids for forms
+- Worked on shop
 
