@@ -61,3 +61,6 @@ stephanieY -- 2017-01-11 9:56
 zichengZ -- 2017-01-12 14:50
 - Add adding users to groups
 - Begin work on shuffle
+
+venderbushW -- 2017-1-12 14:50
+- bugfixes to app and etsy
