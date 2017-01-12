@@ -25,7 +25,7 @@ def init():
                "CREATE TABLE IF NOT EXISTS groupdata \
                (groupid INTEGER, groupname TEXT, members INTEGER)",
                "CREATE TABLE IF NOT EXISTS userdata \
-               (username TEXT, password TEXT, name TEXT, email TEXT)",
+               (username TEXT, password TEXT, name TEXT)",
                "CREATE TABLE IF NOT EXISTS wishlists \
                (username TEXT, itemname TEXT)",
                "CREATE TABLE IF NOT EXISTS blacklists \
@@ -53,7 +53,7 @@ def add_user(username, password, name, email):
         db = connect()
         c = db.cursor()
         req = "INSERT INTO userdata VALUES \
-               ('%s','%s','%s','%s')"%(username, password, name, email)
+               ('%s','%s','%s','%s')"%(username, password, name)
         c.execute(req)
         disconnect(db)
         return True

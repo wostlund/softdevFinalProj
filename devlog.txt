@@ -47,3 +47,7 @@ venderbushW -- 2017-01-11 15:02
 
 stephanieY -- 2017-01-11 15:31
 - Roughly implemented editblack and search
+
+zichengZ -- 2017-01-11 19:11
+- Migrate some code from data to auth
+- Add helper functions for name formatting in auth
