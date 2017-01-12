@@ -10,7 +10,7 @@ baseurl = "https://openapi.etsy.com/v2/"
 
 
 
-def search(terms, number, price): #add price controls!!
+def search(terms, number, price): 
 	urladd = "listings/active?keywords=" + terms + "&limit=" + str(number) + "&includes=Images:1&api_key=" + key
 	url = baseurl + urladd
 	curr = urllib2.urlopen(url)

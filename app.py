@@ -63,7 +63,7 @@ def shop():
 	# 	return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 25), message = "");
 	# else:
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 25), message = "");
+	return render_template('shop.html', title = "Shop"); #etsylist = etsy.search(searchstring, 25), message = "");
 
 @app.route("/creategroup", methods = ["POST", "GET"])
 def creategroup():
@@ -71,7 +71,7 @@ def creategroup():
 	# 	return render_template('creategroup.html', title = "Search", message = "");
 	# else:
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('creategroup.html', title = "Search", message = "");
+	return render_template('creategroup.html', title = "Make Group", message = "");
 
 @app.route("/dashboard", methods = ["POST", "GET"])
 def dashboard():
@@ -79,7 +79,7 @@ def dashboard():
 	# 	return render_template('idashboard.html', title = "Search", message = "");
 	# else:
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('idashboard.html', title = "Search", message = "");
+	return render_template('idashboard.html', title = "Dashboard", message = "");
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
@@ -87,7 +87,7 @@ def blacklist():
 	# 	return render_template('editblack.html', title = "Search", message = "");
 	# else:
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('editblack.html', title = "Search", message = "");
+	return render_template('editblack.html', title = "Blacklist", message = "");
 
 
 if __name__ == "__main__":
