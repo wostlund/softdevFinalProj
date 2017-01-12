@@ -51,3 +51,9 @@ stephanieY -- 2017-01-11 15:31
 zichengZ -- 2017-01-11 19:11
 - Migrate some code from data to auth
 - Add helper functions for name formatting in auth
+
+stephanieY -- 2017-01-11 9:56
+- Commented out custom.css for now
+- In process of implementing all templates except shop
+- Have yet to swap out sample text with jinja variables, match ids for forms
+

@@ -44,7 +44,7 @@ def login():
 @app.route("/search", methods = ["POST", "GET"])
 def search():
 	# if ("username" in session):
-	# 	return render_template('search.html', title = "Search", message = "");
+ 	return render_template('search.html', title = "Search", message = "");
 	# else:
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
 

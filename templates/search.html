@@ -10,7 +10,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>-->
-      <a class="navbar-brand" id="ctrlaltgift" href="#">Ctrl.Alt.Gift</a>
+      <a class="navbar-brand" id="ctrlaltgift" href="/dashboard">Ctrl.Alt.Gift</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -27,11 +27,12 @@
       <div class="jumbotron" id="landing">
 	<h1>Search the Shop</h1>
 	<form action="/shop" method="POST">
-	  <div class="input-group">
-	    <input type="text" class="form-control" placeholder="Search for clothes, gadgets, and more!" id="search">
-	  </div> <br>
-	  <button type="submit" class="btn btn-default" id="search-button">Login</button>
-	</form>
+	  <div class="form-group">
+	    <!--<label for="inputdefault">Default input</label>-->
+	    <input class="form-control" id="inputdefault" type="text" placeholder="Search for clothes, tech, and more">
+	  </div><br>
+	  <button type="submit" class="btn btn-default" id="search-button">Search</button>
+	</form>  
       </div>
     </div>
   </div>
