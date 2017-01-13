@@ -6,9 +6,9 @@ from amazonproduct import API
 ### AMAZON ###
 ##############
 
-api = API(locale='en')
+api = API(locale='us')
 
-def search(terms, number, price);
+def search(terms, number, price):
 	print api.item_search('Blended', Keywords=terms);
 
 key = open("keys.txt", "r").read().strip().split("\n")[0]
@@ -46,4 +46,6 @@ key = open("keys.txt", "r").read().strip().split("\n")[0]
 # 	# req = curr.read()
 # 	# data = json.loads(req)
 
-# search("donkey", 10, 2000)
+search("donkey", 10, 2000)
+
+
