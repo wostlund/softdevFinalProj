@@ -77,6 +77,14 @@ ostlund W -- 2017-1-13 14:24
 - Added js to login and register page to improve the user interface
 - Added new register section to login
 
+zichengZ -- 2017-01-13 14:50
+- Add functions for adding to wishlist and shoppinglist
+
+venderbushW -- 2017-01-13 15:01
+- Created keygen
+- successfully pulled amazon info using API
+
 stephanieY -- 2017-1-13 15:12
 - Added paper_kit to styles, updated paragraph in login.html because Will's thing is fine I think
 - Will change colors while styling so that it's more festive
+

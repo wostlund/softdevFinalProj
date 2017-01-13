@@ -26,7 +26,7 @@ def init():
                "CREATE TABLE IF NOT EXISTS userdata \
                (username TEXT, password TEXT, name TEXT)",
                "CREATE TABLE IF NOT EXISTS wishlists \
-               (username TEXT, itemname TEXT)",
+               (username TEXT, itemname TEXT, link TEXT)",
                "CREATE TABLE IF NOT EXISTS blacklists \
                (username TEXT, ignoreuser TEXT, ignorename TEXT)",
                "CREATE TABLE IF NOT EXISTS shoppinglists \
@@ -71,6 +71,39 @@ def add_group(groupname):
     except:
         return False
 
+# Untested
+def add_blacklist(username, ignoreuser, ignorename):
+
+    
+# Untested
+def add_wishlist(username, itemname, link=None):
+    try:
+        db = connect()
+        c = db.cursor()
+        if link is None:
+            link = "N/A"
+        req = "INSERT INTO wishlists VALUES \
+               (%s, '%s', %s)"%(username, itemname, link)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False  
+
+# Untested
+def add_shoppinglist(username, itemname, link):
+    try:
+        db = connect()
+        c = db.cursor()
+        req = "INSERT INTO shoppinglists VALUES \
+               (%s, '%s', %s)"%(username, itemname, link)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False  
+
+    
 def add_user_to_group(username, groupid):
     try:
         db = connect()

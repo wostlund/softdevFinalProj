@@ -98,8 +98,20 @@ def group():
 	return render_template('group.html', title = "Group", message = "");
 
 
+def makefile():
+	key = open("keys.txt", "r").read().strip().split("\n")[0]
+	secret = open("keys.txt", "r").read().strip().split("\n")[2]
+	tag = open("keys.txt", "r").read().strip().split("\n")[3]
+	filetext = """[Credentials]\naccess_key = """ + key + """\nsecret_key = """ + secret + """\nassociate_tag = """ + tag
+	home = os.getenv("HOME")
+	f = open(home + "/.amazon-product-api", "w+")
+	f.write(filetext)
+	f.close()
+	print " * Key File Generated!"
+
 
 
 if __name__ == "__main__":
     app.debug = True 
+    makefile()
     app.run()
