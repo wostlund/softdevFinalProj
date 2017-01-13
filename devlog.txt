@@ -5,7 +5,7 @@ stephanieY -- 2017-1-05 14:52
 - Wrote basic.html and custom.css.
 
 zichengZ -- 2017-01-05 14:53
-- Added more skeletons.
+- Added more skeletons
 
 ostlundW -- 2017-1-05 14:56
 - Added devlog.txt to the repository
@@ -68,3 +68,7 @@ venderbushW -- 2017-1-12 14:50
 stephanieY -- 2017-1-13 14:19
 - wrote up shop, group.
 - Changed the structure of the shop. Need to use AJAX for shop.
+
+zichengZ -- 2017-01-12 21:46
+- Add basic shuffle method
+- Test functions in data.py

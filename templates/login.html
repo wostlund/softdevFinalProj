@@ -1,7 +1,17 @@
 {% extends "basic.html" %}
 {% block head %}
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link href="../static/styles/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src = "../static/scripts/script.js" type="text/javascript"3></script>
+<style>
+    .note{
+        font-size: 80%;
+    }
+    .note:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
 {% endblock %}
 {% block body %}
 <nav class="navbar navbar-default" id="navbar">
@@ -22,10 +32,10 @@
 </nav>
 <br><br><br>
 <div class="container">
-  <div class="row">
+  <div class="row" id="login">
     <div class="col-lg-8 col-lg-offset-2">
       <div class="jumbotron" id="landing">
-	<h1 id="logintitle">Login and Registration</h1>
+	<h1 id="logintitle">Login</h1>
 	<input type="checkbox" data-toggle="toggle" data-on="Register" data-off="Login"><br> <br>
 	<p id="loginp2">If logging in, enter your username and password and click the 'Login' button. Don't already have an account? Toggle to 'Register' and enter your name, a username, and password, and click the 'Register' button.</p>
 	<form action="/dashboard" method="POST">
@@ -36,10 +46,44 @@
 	    <input type="password" class="form-control" placeholder="Password" id="password">
 	  </div> <br>
 	  <button type="submit" class="btn btn-default" id="login-register-button">Login</button>
+	<br>
+        <br>
+                    <div class="note" onclick="changeToRegister()">
+        Create New Account
+    </div>
+          </form>
+      </div>
+    </div>
+  </div>
+    
+    <div class="row" id="register">
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="jumbotron" id="landing">
+	<h1 id="logintitle">Register</h1>
+	<form action="/newthinghere" method="POST">
+	  <div class="input-group">
+	    <input type="text" class="form-control" placeholder="Username" id="username">
+	  </div> <br>
+    <div class="input-group">
+	    <input type="text" class="form-control" placeholder="Name of Preference" id="username">
+	  </div> <br>
+	  <div class="input-group">
+	    <input type="password" class="form-control" placeholder="Password" id="password">
+	  </div> <br>
+    <div class="input-group">
+	    <input type="password" class="form-control" placeholder="Verify Password" id="password">
+	  </div> <br>
+	  <button type="submit" class="btn btn-default" id="login-register-button">Login</button>
+        <br>
+        <br>
+            <div class="note" onclick="changeToLogin()">
+        Take Me Back to Login
+    </div>
 	</form>
       </div>
     </div>
   </div>
+    
 </div>
 {% endblock %}
 

@@ -89,6 +89,16 @@ def blacklist():
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
 	return render_template('editblack.html', title = "Blacklist", message = "");
 
+@app.route("/group", methods = ["POST", "GET"]) #Needs UNIQUE URL
+def group():
+	# if ("username" in session):
+	# 	return render_template('editblack.html', title = "Search", message = "");
+	# else:
+	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
+	return render_template('group.html', title = "Group", message = "");
+
+
+
 
 if __name__ == "__main__":
     app.debug = True 
