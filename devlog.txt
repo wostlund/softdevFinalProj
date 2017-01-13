@@ -73,6 +73,9 @@ zichengZ -- 2017-01-12 21:46
 - Add basic shuffle method
 - Test functions in data.py
 
-ostlund W -- 2017-1-13 2:24 PM EST
+ostlundW -- 2017-01-13 14:24
 - Added js to login and register page to improve the user interface
 - Added new register section to login
+
+zichengZ -- 2017-01-13 14:50
+- Add functions for adding to wishlist and shoppinglist
