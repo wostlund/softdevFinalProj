@@ -5,7 +5,7 @@ stephanieY -- 2017-1-05 14:52
 - Wrote basic.html and custom.css.
 
 zichengZ -- 2017-01-05 14:53
-- Added more skeletons.
+- Added more skeletons
 
 ostlundW -- 2017-1-05 14:56
 - Added devlog.txt to the repository
@@ -64,3 +64,7 @@ zichengZ -- 2017-01-12 14:50
 
 venderbushW -- 2017-1-12 14:50
 - bugfixes to app and etsy
+
+zichengZ -- 2017-01-12 21:46
+- Add basic shuffle method
+- Test functions in data.py

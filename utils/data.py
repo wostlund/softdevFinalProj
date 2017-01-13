@@ -2,8 +2,7 @@
 # Database Module
 # ========================================
 
-import sqlite3
-import csv
+import sqlite3, random
 
 def connect():
     name = "./data.db"
@@ -65,7 +64,7 @@ def add_group(groupname):
         db = connect()
         c = db.cursor()
         req = "INSERT INTO groupdata VALUES \
-               (%s, '%s', %s)"%(largest_groupid + 1, groupname, 0)
+               (%s, '%s', %s)"%(int(largest_groupid()) + 1, groupname, 0)
         c.execute(req)
         disconnect(db)
         return True
@@ -76,8 +75,8 @@ def add_user_to_group(username, groupid):
     try:
         db = connect()
         c = db.cursor()
-        req = "INSERT INTO groups \
-               (%s, '%s', %s)"%(groupid, username, username) # Unshuffled
+        req = "INSERT INTO groups VALUES \
+               (%s, '%s', '%s')"%(groupid, username, username) # Unshuffled
         c.execute(req)
         req = "UPDATE groupdata \
                SET members = members + 1 \
@@ -88,9 +87,42 @@ def add_user_to_group(username, groupid):
     except:
         return False
 
-def shuffle(groupid):
+def shuffle_group(groupid):
     try:
-        
+        db = connect()
+        c = db.cursor()
+
+        # Preliminary Checks
+        req = "SELECT members FROM groupdata WHERE groupid = %s"%(groupid)
+        c.execute(req)
+        mem = 0
+        for i in c:
+            mem = i[0]
+        if mem == 0:
+            return False # No Members, Shuffle Fails
+
+        req = "SELECT * FROM groups WHERE groupid = %s"%(groupid)
+        c.execute(req)
+
+        # Building Shuffle Array
+        tmp = []
+        for i in c:
+            tmp += [[i[1], i[2]]]
+        for i in range(7 * mem):
+            swap(tmp, random.randint(0, mem-1), random.randint(0, mem-1))
+        for i in range(mem):
+            tmp[i][1] = tmp[i-1][0]
+        #for i in tmp:
+        #   print i # Debugging
+
+        # Updating Database
+        for i in tmp:
+            req = "UPDATE groups \
+                   SET recipient = '%s' \
+                   WHERE username = '%s'"%(i[1], i[0])
+            c.execute(req)
+
+        disconnect(db)
         return True
     except:
         return False
@@ -108,6 +140,11 @@ def largest_groupid():
             maxid = entry[0]
     disconnect(db)
     return maxid
+
+def swap(array, i1, i2):
+    tmp = array[i1]
+    array[i1] = array[i2]
+    array[i2] = tmp
 
 # Initialization
 # ==========================================================================
