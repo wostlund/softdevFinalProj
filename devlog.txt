@@ -64,3 +64,7 @@ zichengZ -- 2017-01-12 14:50
 
 venderbushW -- 2017-1-12 14:50
 - bugfixes to app and etsy
+
+stephanieY -- 2017-1-13 14:19
+- wrote up shop, group.
+- Changed the structure of the shop. Need to use AJAX for shop.

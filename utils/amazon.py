@@ -8,7 +8,7 @@ from amazonproduct import API
 
 api = API(locale='en')
 
-def search(terms, number, price);
+def search(terms, number, price):
 	print api.item_search('Blended', Keywords=terms);
 
 key = open("keys.txt", "r").read().strip().split("\n")[0]

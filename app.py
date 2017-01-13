@@ -5,8 +5,8 @@ import csv
 import hashlib
 import os
 from flask import Flask, render_template, request, session, url_for
-from utils import etsy, amazon, auth
-
+#from utils import etsy, amazon, auth
+from utils import etsy, auth
 
 app = Flask(__name__)
 app.secret_key = 'secrets'
