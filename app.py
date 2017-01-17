@@ -32,6 +32,10 @@ def login():
 		else:
 			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
 	if ("login" in form):
+		print "login initiated"
+		print form["username"]
+		print form["password"]
+		print auth.login(form["username"], form["password"])
 		if (auth.login(form["username"], form["password"]) == 0):
 			session["username"] = form["username"]
 			return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
