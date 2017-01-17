@@ -72,8 +72,17 @@ def add_group(groupname):
         return False
 
 # Untested
-def add_blacklist(username, ignoreuser, ignorename):
-    return 0
+def add_blacklist(username, ignoreuser):
+    try:
+        db = connect()
+        c = db.cursor()
+        ignorename = get_name(username)
+        req = "INSERT INTO blacklists VALUES \
+              ('%s', '%s', '%s')"%(username, ignoreuser, ignorename)
+        c.execute(req)
+        disconnect(db)
+    except:
+        return False
     
 # Untested
 def add_wishlist(username, itemname, link=None):
@@ -83,7 +92,7 @@ def add_wishlist(username, itemname, link=None):
         if link is None:
             link = "N/A"
         req = "INSERT INTO wishlists VALUES \
-               (%s, '%s', %s)"%(username, itemname, link)
+               ('%s', '%s', '%s')"%(username, itemname, link)
         c.execute(req)
         disconnect(db)
         return True
@@ -96,13 +105,12 @@ def add_shoppinglist(username, itemname, link):
         db = connect()
         c = db.cursor()
         req = "INSERT INTO shoppinglists VALUES \
-               (%s, '%s', %s)"%(username, itemname, link)
+               ('%s', '%s', '%s')"%(username, itemname, link)
         c.execute(req)
         disconnect(db)
         return True
     except:
         return False  
-
     
 def add_user_to_group(username, groupid):
     try:
@@ -174,11 +182,21 @@ def largest_groupid():
     disconnect(db)
     return maxid
 
+def get_name(username):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT name FROM userdata WHERE username == '%s'"%(username)
+    data = c.execute(req)
+    ret = "N/A"
+    for entry in data:
+        ret = entry[0]
+    return ret
+
 def swap(array, i1, i2):
     tmp = array[i1]
     array[i1] = array[i2]
     array[i2] = tmp
-
+    
 # Initialization
 # ==========================================================================
 if (__name__ == "__main__"):
