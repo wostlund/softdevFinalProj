@@ -102,3 +102,6 @@ venderbushW -- 2017-1-16 22:37
 venderbushW -- 2017-1-16 23:01
 - Fixed login completely, including error
 - Logout non-functional currently (send "logout" to /login for proper logout)
+
+st234pa -- 2017-1-17 14:14
+- still working on the templates
