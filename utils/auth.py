@@ -16,23 +16,26 @@ def disconnect(db):
 # Authentication Functions
 # ==========================================================================
 def login(username, password):
-    username = username.lower()
-    if check_safe(username) < 0:
+    try:
+        username = username.lower()
+        if check_safe(username) < 0:
+            return -2 # Invalid Username
+        db = connect()
+        c = db.cursor()
+        req = "SELECT * FROM userdata WHERE username == '%s'"%(username)
+        data = c.execute(req)
+        if data: # User is registered.
+            fields = [i for i in data]
+            data = fields[0][1]
+            if data == browns(password):
+                return 0 # Correct Password
+            return -1 # Incorrect Password
         return -2 # Invalid Username
-    db = connect()
-    c = db.cursor()
-    req = "SELECT * FROM userdata WHERE username == '%s'"%(username)
-    data = c.execute(req)
-    if data: # User is registered.
-        fields = [i for i in data]
-        data = fields[0][1]
-        if data == browns(password):
-            return 0 # Correct Password
-        return -1 # Incorrect Password
-    return -2 # Invalid Username
+    except:
+        return -3 # Fatal Error - Should Never Happen
 
 def register(name, username, password):
-    #try:
+    try:
         db = connect()
         c = db.cursor()
         username = username.lower()
@@ -41,9 +44,8 @@ def register(name, username, password):
         c.execute(req)
         disconnect(db)
         return 0 # Good
-    #except:
+    except:
         return -1 # Failure
-
 
 # Helper Functions
 # ==========================================================================
