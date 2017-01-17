@@ -95,3 +95,6 @@ venderbushW -- 2017-1-16 20:13
 zichengZ -- 2017-01-16 21:33
 - Fix auth code and other bugs with login and register
 - Simplify some code in app.py (no more database work in each route)
+
+venderbushW -- 2017-1-16 22:37
+- Fixed login, found fatal error in login code
