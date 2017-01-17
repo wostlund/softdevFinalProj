@@ -37,7 +37,7 @@ def login():
 		print auth.login(form["username"], form["password"])
 		if (auth.login(form["username"], form["password"]) == 0):
 			session["username"] = form["username"]
-			return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
+			return render_template('idashboard.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
 		else:
 			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
 	return render_template('login.html', title = "Login", message = "");
