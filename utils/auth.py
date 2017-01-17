@@ -5,7 +5,7 @@
 import sqlite3, hashlib
 
 def connect():
-    name = "./data.db"
+    name = "./utils/data.db" # Change
     db = sqlite3.connect(name)
     return db
 
@@ -20,25 +20,28 @@ def login(username, password):
     if check_safe(username) < 0:
         return -2 # Invalid Username
     db = connect()
-    c = db.cursor
-    req = "SELECT username FROM userdata WHERE username == '%s'"%(username)
+    c = db.cursor()
+    req = "SELECT * FROM userdata WHERE username == '%s'"%(username)
     data = c.execute(req)
     if data: # User is registered.
-        if data['password'] == hash(password):
+        fields = [i for i in data]
+        data = fields[0][1]
+        if data == browns(password):
             return 0 # Correct Password
         return -1 # Incorrect Password
     return -2 # Invalid Username
 
 def register(name, username, password):
-    try:
+    #try:
         db = connect()
-        c = db.cursor
+        c = db.cursor()
+        username = username.lower()
         req = "INSERT INTO userdata VALUES \
-               ('%s','%s','%s','%s')"%(username, hash(password), format_caps(name))
+               ('%s','%s','%s')"%(username, browns(password), format_caps(name))
         c.execute(req)
         disconnect(db)
         return 0 # Good
-    except:
+    #except:
         return -1 # Failure
 
 
@@ -53,7 +56,7 @@ def check_safe(username):
             return -1 # Invalid Character
     return 0 # Good
 
-def hash(password):
+def browns(password):
     password = password + "this-is-some-nice-salt-and-pepper"
     password = hashlib.sha384(password).hexdigest()
     return password

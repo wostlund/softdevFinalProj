@@ -92,3 +92,6 @@ venderbushW -- 2017-1-16 20:13
 - Got login system working with HTML templates
 - Currently auth code for logging in is broken, but all the framework works
 
+zichengZ -- 2017-01-16 21:33
+- Fix auth code and other bugs with login and register
+- Simplify some code in app.py (no more database work in each route)

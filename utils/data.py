@@ -5,7 +5,7 @@
 import sqlite3, random
 
 def connect():
-    name = "./data.db"
+    name = "./utils/data.db" # Change
     db = sqlite3.connect(name)
     return db
 
@@ -52,7 +52,7 @@ def add_user(username, password, name, email):
         db = connect()
         c = db.cursor()
         req = "INSERT INTO userdata VALUES \
-               ('%s','%s','%s','%s')"%(username, password, name)
+               ('%s','%s','%s')"%(username, password, name)
         c.execute(req)
         disconnect(db)
         return True
@@ -73,7 +73,7 @@ def add_group(groupname):
 
 # Untested
 def add_blacklist(username, ignoreuser, ignorename):
-
+    return 0
     
 # Untested
 def add_wishlist(username, itemname, link=None):
@@ -182,6 +182,8 @@ def swap(array, i1, i2):
 # Initialization
 # ==========================================================================
 if (__name__ == "__main__"):
-    reset()
-    init()
-    
+    try:
+        reset()
+    except:
+        init()
+        reset()    

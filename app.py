@@ -13,40 +13,30 @@ app.secret_key = 'secrets'
 
 @app.route("/", methods = ["POST", "GET"])
 def root():
-	db = auth.connect()
 	form = request.form
 	if ("logout" in form):
 		user = session["username"]
 		session.pop("username")
-		auth.disconnect(db)
 		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "You have been logged out!")
 	if ("username" in session):
-		auth.disconnect(db)
 		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"] + "!")
-	auth.disconnect(db)
 	return render_template('main.html', title = "Ctrl.Alt.Gift", message = "")
 
 @app.route("/login", methods = ["POST", "GET"])
 def login():
-	db = auth.connect()
 	form = request.form
 	print form
 	if ("register" in form):
 		if (auth.register(form["name"], form["username"], form["password"]) == 0):
-			auth.disconnect(db)
 			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
 		else:
-			auth.disconnect(db)
 			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
 	if ("login" in form):
 		if (auth.login(form["username"], form["password"]) == 0):
 			session["username"] = form["username"]
-			auth.disconnect(db)
 			return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
 		else:
-			auth.disconnect(db)
 			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
-	auth.disconnect(db)
 	return render_template('login.html', title = "Login", message = "");
 
 @app.route("/search", methods = ["POST", "GET"])
@@ -98,7 +88,6 @@ def group():
 	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
 	return render_template('group.html', title = "Group", message = "");
 
-
 def makefile():
 	key = open("keys.txt", "r").read().strip().split("\n")[0]
 	secret = open("keys.txt", "r").read().strip().split("\n")[2]
@@ -109,8 +98,6 @@ def makefile():
 	f.write(filetext)
 	f.close()
 	print " * Key File Generated!"
-
-
 
 if __name__ == "__main__":
     app.debug = True 
