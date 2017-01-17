@@ -30,6 +30,14 @@ def root():
 def login():
 	db = auth.connect()
 	form = request.form
+	print form
+	if ("register" in form):
+		if (auth.register(form["name"], form["username"], form["password"]) == 0):
+			auth.disconnect(db)
+			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
+		else:
+			auth.disconnect(db)
+			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
 	if ("login" in form):
 		if (auth.login(form["username"], form["password"]) == 0):
 			session["username"] = form["username"]
@@ -38,13 +46,6 @@ def login():
 		else:
 			auth.disconnect(db)
 			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
-	if ("register" in form):
-		if (auth.register(form["name"], form["username"], form["password"]) == 0):
-			auth.disconnect(db)
-			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
-		else:
-			auth.disconnect(db)
-			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
 	auth.disconnect(db)
 	return render_template('login.html', title = "Login", message = "");
 
