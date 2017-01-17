@@ -24,8 +24,8 @@ def login(username, password):
         c = db.cursor()
         req = "SELECT * FROM userdata WHERE username == '%s'"%(username)
         data = c.execute(req)
-        if data: # User is registered.
-            fields = [i for i in data]
+        fields = [i for i in data]
+        if len(fields): # User is registered.
             data = fields[0][1]
             if data == browns(password):
                 return 0 # Correct Password
