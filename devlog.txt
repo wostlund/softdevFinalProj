@@ -98,3 +98,7 @@ zichengZ -- 2017-01-16 21:33
 
 venderbushW -- 2017-1-16 22:37
 - Fixed login, found fatal error in login code
+
+venderbushW -- 2017-1-16 23:01
+- Fixed login completely, including error
+- Logout non-functional currently (send "logout" to /login for proper logout)

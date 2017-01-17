@@ -25,7 +25,6 @@ def root():
 @app.route("/login", methods = ["POST", "GET"])
 def login():
 	form = request.form
-	print form
 	if ("register" in form):
 		if (auth.register(form["name"], form["username"], form["password"]) == 0):
 			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
@@ -45,52 +44,47 @@ def login():
 
 @app.route("/search", methods = ["POST", "GET"])
 def search():
-	# if ("username" in session):
- 	return render_template('search.html', title = "Search", message = "");
-	# else:
-	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
+	if ("username" in session):
+ 		return render_template('search.html', title = "Search", login = "login", message = "");
+	else:
+	 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/shop", methods = ["POST", "GET"])
 def shop():
 	form = request.form
-	# if ("username" in session):
-	# 	searchstring = form["search"]
-	# 	return render_template('shop.html', title = "Search", etsylist = etsy.search(searchstring, 24, price), message = "");
-	# else:
-	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('shop.html', title = "Shop"); #etsylist = etsy.search(searchstring, 24, price), message = "");
+	if ("username" in session):
+		searchstring = form["search"]
+		return render_template('shop.html', login = "login", title = "Search", etsylist = etsy.search(searchstring, 24, price), message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/creategroup", methods = ["POST", "GET"])
 def creategroup():
-	# if ("username" in session):
-	# 	return render_template('creategroup.html', title = "Search", message = "");
-	# else:
-	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('creategroup.html', title = "Make Group", message = "");
+	if ("username" in session):
+		return render_template('creategroup.html', login = "login", title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/dashboard", methods = ["POST", "GET"])
 def dashboard():
-	# if ("username" in session):
-	# 	return render_template('idashboard.html', title = "Search", message = "");
-	# else:
-	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('idashboard.html', title = "Dashboard", message = "");
+	if ("username" in session):
+		return render_template('idashboard.html', login = "login", title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
-	# if ("username" in session):
-	# 	return render_template('editblack.html', title = "Search", message = "");
-	# else:
-	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('editblack.html', title = "Blacklist", message = "");
+	if ("username" in session):
+		return render_template('editblack.html', login = "login", title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/group", methods = ["POST", "GET"]) #Needs UNIQUE URL
 def group():
-	# if ("username" in session):
-	# 	return render_template('editblack.html', title = "Search", message = "");
-	# else:
-	# 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
-	return render_template('group.html', title = "Group", message = "");
+	if ("username" in session):
+		return render_template('editblack.html', login = "login", title = "Search", message = "");
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 def makefile():
 	key = open("keys.txt", "r").read().strip().split("\n")[0]
