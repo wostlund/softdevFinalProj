@@ -26,10 +26,10 @@
     <div class="col-lg-8 col-lg-offset-2">
       <div class="jumbotron" id="landing">
 	<h1>Search the Shop</h1>
-	<form action="/shop">
+	<form action="/shop" method="POST">
 	  <div class="form-group">
 	    <!--<label for="inputdefault">Default input</label>-->
-	    <input class="form-control" id="searchstring" type="text" placeholder="Search for clothes, tech, and more">
+	    <input class="form-control" name="searchstring" type="text" placeholder="Search for clothes, tech, and more">
 	  </div><br>
 	  <button type="submit" class="btn btn-default" id="search-button">Search</button>
 	</form>  
