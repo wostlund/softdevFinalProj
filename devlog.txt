@@ -1,0 +1,129 @@
+stephanieY -- 2017-1-05 14:36
+- Created skeleton.
+
+stephanieY -- 2017-1-05 14:52
+- Wrote basic.html and custom.css.
+
+zichengZ -- 2017-01-05 14:53
+- Added more skeletons
+
+ostlundW -- 2017-1-05 14:56
+- Added devlog.txt to the repository
+
+ostlundW -- 2017-1-05 14:57
+- Added design.pdf to the repository
+
+venderbushW -- 2017-1-08 14:45
+- Skeleton app.py
+
+venderbushW -- 2017-1-07 15:05
+- Registered for APIs, received keys
+
+stephanieY -- 2017-1-09 14:21
+- Started basic.html and main.html. Added {% endblock %} to main.html. Edited main.html, changed color scheme in custom.css
+
+zichengZ -- 2017-01-09 14:53
+- Work on auth.py
+
+stephanieY -- 2017-01-10 14:42
+- Started login.html. Need to check if toggle works. JS needed for login.html
+
+venderbushW -- 2017-1-10 14:44
+- Successfully pulled and parsed data from Etsy API
+- Implemented Etsy searching in Flask app
+
+zichengZ -- 2017-01-10 14:54
+- Add functions to data.py
+- Begin work on database functions
+
+venderbushW -- 2017-01-11 1:02
+- Roughly implemented login
+
+stephanieY -- 2017-01-11 14:42
+- Roughly implemented idashboard and creategroup, but not quite done yet.
+
+venderbushW -- 2017-01-11 15:02
+- Implemented price controls in etsy
+
+stephanieY -- 2017-01-11 15:31
+- Roughly implemented editblack and search
+
+zichengZ -- 2017-01-11 19:11
+- Migrate some code from data to auth
+- Add helper functions for name formatting in auth
+
+stephanieY -- 2017-01-11 9:56
+- Commented out custom.css for now
+- In process of implementing all templates except shop
+- Have yet to swap out sample text with jinja variables, match ids for forms
+- Worked on shop
+
+zichengZ -- 2017-01-12 14:50
+- Add adding users to groups
+- Begin work on shuffle
+
+venderbushW -- 2017-1-12 14:50
+- bugfixes to app and etsy
+
+zichengZ -- 2017-01-12 21:46
+- Add basic shuffle method
+- Test functions in data.py
+
+stephanieY -- 2017-1-13 14:19
+- wrote up shop, group.
+- Changed the structure of the shop. Need to use AJAX for shop.
+
+ostlund W -- 2017-1-13 14:24
+- Added js to login and register page to improve the user interface
+- Added new register section to login
+
+zichengZ -- 2017-01-13 14:50
+- Add functions for adding to wishlist and shoppinglist
+
+venderbushW -- 2017-01-13 15:01
+- Created keygen
+- successfully pulled amazon info using API
+
+stephanieY -- 2017-1-13 15:12
+- Added paper_kit to styles, updated paragraph in login.html because Will's thing is fine I think
+- Will change colors while styling so that it's more festive
+
+venderbushW -- 2017-1-16 20:13
+- Got login system working with HTML templates
+- Currently auth code for logging in is broken, but all the framework works
+
+zichengZ -- 2017-01-16 21:33
+- Fix auth code and other bugs with login and register
+- Simplify some code in app.py (no more database work in each route)
+
+venderbushW -- 2017-1-16 22:37
+- Fixed login, found fatal error in login code
+
+venderbushW -- 2017-1-16 23:01
+- Fixed login completely, including error
+- Logout non-functional currently (send "logout" to /login for proper logout)
+
+st234pa -- 2017-1-17 14:14
+- still working on the templates
+
+zichengZ -- 2017-01-17 14:47
+- Work on more database functions
+- Splat a bug in data.py
+
+venderbushW -- 2017-01-17 14:55
+- Fixed everybody's problems
+- Started working on search functionality
+
+st234pa -- 2017-01-18 9:37
+- Moved message below navbar
+- Changed navbar to login
+- Did jinja stuff in idashboard.html. Winston: need to look through it to get the variable names and what data to pass. Also check out the stuff in idashboard.html for My Groups. We need to use url building for /group.
+- Updated logout, and it works. Have yet to change color.
+- Did jinja stuff in editblack.html. Winston: need to look through it to get the variable names and what data to pass.
+
+venderbushW -- 2017-01-18 11:21
+- Added failsafe logout path in Flask
+- Noted the above assignments
+
+venderbushW -- 2017-01-18 14:53
+- Added custom urls
