@@ -10,6 +10,10 @@
         text-decoration: underline;
         cursor: pointer;
     }
+    .hide{
+        margin-top: 0%;
+        margin-bottom: 1%;
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -37,20 +41,21 @@
       <div class="jumbotron" id="landing">
 	<h1 id="logintitle">Login</h1>
 	<p id="loginp2">If logging in, enter your username and password and click the 'Login' button. Don't already have an account? Click 'Create New Account'.</p>
+          	  </div>
 	<form action="/login" method="POST">
 	  <div class="input-group">
 	    <input type="text" class="form-control" placeholder="Username" name="username">
 	  </div> <br>
+        <input type="text" id="appear" class="form-control hide" placeholder="Preferred Name" name="name" style="display:none;">
 	  <div class="input-group">
 	    <input type="password" class="form-control" placeholder="Password" name="password">
 	  </div> <br>
-	  <button type="submit" class="btn btn-default" id="login-register-button" name="login">Login</button>
-	<br>
-        <br>
-                    <div class="note" onclick="changeToRegister()">
+	  <button type="submit" id = "disappear" class="btn btn-default" id="login-register-button" name="login">Login</button>
+         <button type="submit" id = "show" class="btn btn-default" id="login-register-button" name="register" style="display:none;">Register</button>
+                            <div class="note" id = "hide" onclick="changeToLogin()">
         Create New Account
     </div>
-          </form>
+        </form>
       </div>
     </div>
   </div>
@@ -64,7 +69,7 @@
 	    <input type="text" class="form-control" placeholder="Username" name="username">
 	  </div> <br>
     <div class="input-group">
-	    <input type="text" class="form-control" placeholder="Name of Preference" name="name">
+	    <input type="text" class="form-control" placeholder="Name of Preference" name="name" style="display:none;">
 	  </div> <br>
 	  <div class="input-group">
 	    <input type="password" class="form-control" placeholder="Password" name="password">
@@ -72,17 +77,12 @@
     <div class="input-group">
 	    <input type="password" class="form-control" placeholder="Verify Password" name="password2">
 	  </div> <br>
-	  <button type="submit" class="btn btn-default" id="login-register-button" name="register">Register</button>
-        <br>
-        <br>
-            <div class="note" onclick="changeToLogin()">
-        Take Me Back to Login
-    </div>
-	</form>
-      </div>
-    </div>
-  </div>
+	  <button type="submit" class="btn btn-default" id="login-register-button" name="register" style="display:none;">Register</button>
+
     
+</div>
+        </div>
+        </div>
 </div>
 {% endblock %}
 

@@ -1,6 +1,8 @@
 function changeToLogin(){
-    document.getElementById("register").style.display = "none";
-    document.getElementById("login").style.display = "inherit";
+    document.getElementById("hide").style.display = "none";
+    document.getElementById("disappear").style.display = "none";
+    document.getElementById("show").style.display = "inline";
+    document.getElementById("appear").style.display = "inline";
 }
 
 function changeToRegister(){
