@@ -128,6 +128,22 @@ def add_user_to_group(username, groupid):
     except:
         return False
 
+def get_group_data(groupid):
+    #try:
+        db = connect()
+        c = db.cursor()
+        req = "SELECT * FROM groupdata WHERE groupid = %s"%(groupid)
+        data = c.execute(req)
+        ret = {} # Return
+        for i in data:
+            ret['groupid'] = i[0]
+            ret['groupname'] = i[1]
+            ret['members'] = i[2]
+        disconnect(db)
+        return ret
+    #except:
+        return False
+
 def shuffle_group(groupid):
     try:
         db = connect()
@@ -182,6 +198,17 @@ def largest_groupid():
     disconnect(db)
     return maxid
 
+def view_groups():
+    db = connect()
+    c = db.cursor()
+    req = "SELECT * FROM groupdata"
+    data = c.execute(req)
+    ret = []
+    for i in data:
+        ret += [i]
+    disconnect(db)
+    return ret
+        
 def get_name(username):
     db = connect()
     c = db.cursor()
