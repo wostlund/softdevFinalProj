@@ -29,6 +29,7 @@ def search(terms, number):
 		newdict["url"] = i["url"];
 		imgs = i["Images"][0]; #dictionary
 		newdict["imgurl"] = imgs["url_fullxfull"]
+		reslist.append(newdict)
 	return reslist
 
-#print search("donkey", 25, 20)
+#print search("donkey", 25)

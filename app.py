@@ -22,6 +22,13 @@ def root():
 		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"] + "!")
 	return render_template('main.html', title = "Ctrl.Alt.Gift", message = "")
 
+@app.route("/logout", methods = ["POST", "GET"])
+def logout():
+	user = session["username"]
+	session.pop("username")
+	return render_template('main.html', title = "Ctrl.Alt.Gift", message = "You have been logged out!")
+
+
 @app.route("/login", methods = ["POST", "GET"])
 def login():
 	form = request.form

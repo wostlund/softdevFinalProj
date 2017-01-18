@@ -120,3 +120,7 @@ st234pa -- 2017-01-18 9:37
 - Did jinja stuff in idashboard.html. Winston: need to look through it to get the variable names and what data to pass. Also check out the stuff in idashboard.html for My Groups. We need to use url building for /group.
 - Updated logout, and it works. Have yet to change color.
 - Did jinja stuff in editblack.html. Winston: need to look through it to get the variable names and what data to pass.
+
+venderbushW -- 2017-01-18 11:21
+- Added failsafe logout path in Flask
+- Noted the above assignments
