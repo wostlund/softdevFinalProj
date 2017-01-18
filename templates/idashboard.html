@@ -15,7 +15,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
 	<li><a href="/search">Search the Shop</a></li>
-	<li><a href="/login">Logout</a></li>
+	<li>
+	  <form action="/login" method="POST">
+	    <button type="submit" class="btn btn-default" name="logout">Logout</button>
+	  </form>
+	</li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
