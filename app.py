@@ -92,6 +92,11 @@ def blacklist():
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
+@app.route("/group", methods = ["POST", "GET"])
+def groupcr():
+	#creates group in database
+	return render_template('group.html')
+
 @app.route("/group/<idnum>", methods = ["POST", "GET"])
 def group(idnum):
 	groupinfo = data.get_group_data(idnum)

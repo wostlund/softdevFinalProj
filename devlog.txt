@@ -124,3 +124,6 @@ st234pa -- 2017-01-18 9:37
 venderbushW -- 2017-01-18 11:21
 - Added failsafe logout path in Flask
 - Noted the above assignments
+
+venderbushW -- 2017-01-18 14:53
+- Added custom urls
