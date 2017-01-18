@@ -76,14 +76,14 @@ def creategroup():
 @app.route("/dashboard", methods = ["POST", "GET"])
 def dashboard():
 	if ("username" in session):
-		return render_template('idashboard.html', login = "login", title = "Search", message = "");
+		return render_template('idashboard.html', blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
 	if ("username" in session):
-		return render_template('editblack.html', login = "login", title = "Search", message = "");
+		return render_template('editblack.html', myblacklist = "", login = "login", title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
