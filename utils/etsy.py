@@ -22,13 +22,16 @@ def search(terms, number):
 		newdict = {}
 		newdict["name"] = i["title"]
 		newdict["description"] = i["description"]
-		newdict["category"] = i["category_path"]
-		newdict["price"] = i["price"]
-		intprice = int(float(newdict["price"]))
-		newdict["currency"] = i["currency_code"]
+		#newdict["category"] = i["category_path"]
+		newdict["price"] = i["price"] + " " + i["currency_code"]
+		#intprice = int(float(newdict["price"]))
+		#newdict["currency"] = i["currency_code"]
 		newdict["url"] = i["url"];
-		imgs = i["Images"][0]; #dictionary
-		newdict["imgurl"] = imgs["url_fullxfull"]
+		try:
+			imgs = i["Images"][0]; #dictionary
+			newdict["imgurl"] = imgs["url_fullxfull"]
+		except:
+			newdict["imgurl"] = "No Images"
 		reslist.append(newdict)
 	return reslist
 

@@ -75,22 +75,28 @@ def creategroup():
 
 @app.route("/dashboard", methods = ["POST", "GET"])
 def dashboard():
+	form = request.form
 	if ("username" in session):
-		return render_template('idashboard.html', login = "login", title = "Search", message = "");
+		# if ("update-blacklist-button" in form):
+		# 	newblack = form["edited-blacklist"]
+		# 	#Do the function to change text blacklist to list
+
+		return render_template('idashboard.html', blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
 	if ("username" in session):
-		return render_template('editblack.html', login = "login", title = "Search", message = "");
+		return render_template('editblack.html', myblacklist = "", login = "login", title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
-@app.route("/group", methods = ["POST", "GET"]) #Needs UNIQUE URL
-def group():
+@app.route("/group/<idnum>", methods = ["POST", "GET"])
+def group(idnum):
+	groupinfo = data.get_group_data(idnum)
 	if ("username" in session):
-		return render_template('editblack.html', login = "login", title = "Search", message = "");
+		return render_template('group.html', login = "login", title = "", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
