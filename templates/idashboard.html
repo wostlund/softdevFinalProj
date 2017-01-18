@@ -33,12 +33,10 @@
 	</div>
 
 	<!-- List group -->
-	<ul class="list-group">
-	  <li class="list-group-item">Group Link!</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
+	<ul class="list-group" id="mygroups">
+	  {% for group in mygroupslist %}
+	  <li class="list-group-item"><a href="/group/{{group[id]}}">{{group[name]}}</a></li>
+	  {% endfor %}
 	</ul>
       </div>
     </div><!--col-->
@@ -52,11 +50,9 @@
 
 	<!-- List group -->
 	<ul class="list-group">
-	  <li class="list-group-item">Cras justo odio</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
+	  {% for item in wishlist %}
+	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
+	  {% endfor %}
 	</ul>
       </div>
     </div>
@@ -72,11 +68,9 @@
 
 	<!-- List group -->
 	<ul class="list-group">
-	  <li class="list-group-item">Cras justo odio</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
+	  {% for item in shoppinglist %}
+	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
+	  {% endfor %}
 	</ul>
       </div>
     </div>
@@ -90,11 +84,9 @@
 
 	<!-- List group -->
 	<ul class="list-group">
-	  <li class="list-group-item">Cras justo odio</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
+	  {% for person in blacklist %}
+	  <li class="list-group-item">person[name]</li>
+	  {% endfor %}
 	</ul>
       </div>
     </div>
