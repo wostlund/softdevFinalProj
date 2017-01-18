@@ -17,7 +17,7 @@ def disconnect(db):
 # ==========================================================================
 def login(username, password):
     try:
-        username = username.lower()
+        username = username.lower().strip()
         if check_safe(username) < 0:
             return -2 # Invalid Username
         db = connect()
@@ -38,7 +38,7 @@ def register(name, username, password):
     try:
         db = connect()
         c = db.cursor()
-        username = username.lower()
+        username = username.lower().strip()
         req = "INSERT INTO userdata VALUES \
                ('%s','%s','%s')"%(username, browns(password), format_caps(name))
         c.execute(req)
@@ -47,6 +47,20 @@ def register(name, username, password):
     except:
         return -1 # Failure
 
+def change_password(username, oldpass, newpass):
+    try:
+        db = connect()
+        c = db.cursor()
+        if login(username, oldpass):
+            req = "UPDATE userdata \
+                   SET password = '%s' \
+                   WHERE username = '%s'"%(browns(newpass), username)
+            c.execute(req)
+        disconnect(db)
+        return 0
+    except:
+        return -1 # Failure
+        
 # Helper Functions
 # ==========================================================================
 def check_safe(username):
