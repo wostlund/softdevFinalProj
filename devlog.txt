@@ -119,3 +119,4 @@ st234pa -- 2017-01-18 9:37
 - Changed navbar to login
 - Did jinja stuff in idashboard.html. Winston: need to look through it to get the variable names and what data to pass.
 - Updated logout, and it works. Have yet to change color.
+- Did jinja stuff in editblack.html. Winston: need to look through it to get the variable names and what data to pass.
