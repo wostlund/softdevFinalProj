@@ -127,3 +127,6 @@ venderbushW -- 2017-01-18 11:21
 
 venderbushW -- 2017-01-18 14:53
 - Added custom urls
+
+venderbushW -- 2017-01-19 14:43
+- Jinja'd the shopping screen
