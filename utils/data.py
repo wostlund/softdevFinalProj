@@ -22,7 +22,7 @@ def init():
     cmdlist = ["CREATE TABLE IF NOT EXISTS groups \
                (groupid INTEGER, username TEXT, recipient TEXT)",
                "CREATE TABLE IF NOT EXISTS groupdata \
-               (groupid INTEGER, groupname TEXT, members INTEGER)",
+               (groupid INTEGER, groupname TEXT, members INTEGER, budget TEXT, date TEXT)",
                "CREATE TABLE IF NOT EXISTS userdata \
                (username TEXT, password TEXT, name TEXT)",
                "CREATE TABLE IF NOT EXISTS wishlists \
@@ -45,7 +45,7 @@ def reset():
         c.execute(cmd)
     disconnect(db)
     
-# Database Editing Functions
+# Database - Data Addition
 # ==========================================================================
 def add_user(username, password, name, email):
     try:
@@ -59,12 +59,12 @@ def add_user(username, password, name, email):
     except:
         return False
 
-def add_group(groupname):
+def add_group(groupname, budget, date): # To Add Users
     try:
         db = connect()
         c = db.cursor()
         req = "INSERT INTO groupdata VALUES \
-               (%s, '%s', %s)"%(int(largest_groupid()) + 1, groupname, 0)
+               (%s, '%s', %s, '%s', '%s')"%(int(largest_groupid()) + 1, groupname, 0, budget, date)
         c.execute(req)
         disconnect(db)
         return True
@@ -119,6 +119,7 @@ def add_user_to_group(username, groupid):
         req = "INSERT INTO groups VALUES \
                (%s, '%s', '%s')"%(groupid, username, username) # Unshuffled
         c.execute(req)
+        shuffle_group(groupid) # Shuffled
         req = "UPDATE groupdata \
                SET members = members + 1 \
                WHERE groupid = %s"%(groupid)
@@ -128,22 +129,53 @@ def add_user_to_group(username, groupid):
     except:
         return False
 
+# Database - Data Retrieval
+# ==========================================================================
 def get_group_data(groupid):
-    #try:
+    try:
         db = connect()
         c = db.cursor()
         req = "SELECT * FROM groupdata WHERE groupid = %s"%(groupid)
         data = c.execute(req)
         ret = {} # Return
-        for i in data:
-            ret['groupid'] = i[0]
-            ret['groupname'] = i[1]
-            ret['members'] = i[2]
+        for entry in data:
+            ret['groupid'] = entry[0]
+            ret['groupname'] = entry[1]
+            ret['members'] = entry[2]
+            ret['budget'] = entry[3]
+            ret['date'] = entry[4]
         disconnect(db)
         return ret
-    #except:
+    except:
         return False
 
+def get_name(username):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT name FROM userdata WHERE username == '%s'"%(username)
+    data = c.execute(req)
+    ret = "N/A"
+    for entry in data:
+        ret = entry[0]
+    disconnect(db)
+    return ret
+
+def get_blacklist(username): # Username Of Person Logged In
+    db = connect()
+    c = db.cursor()
+    req = "SELECT * FROM blacklists WHERE username == '%s'"%(username)
+    data = c.execute()
+    ret = []
+    for entry in data:
+        i = [entry[1], entry[2]]
+        ret += [i]
+    disconnect(db)
+    return ret
+    
+    
+    
+# Database - Data Modification
+# ==========================================================================
 def shuffle_group(groupid):
     try:
         db = connect()
@@ -207,17 +239,7 @@ def view_groups():
     for i in data:
         ret += [i]
     disconnect(db)
-    return ret
-        
-def get_name(username):
-    db = connect()
-    c = db.cursor()
-    req = "SELECT name FROM userdata WHERE username == '%s'"%(username)
-    data = c.execute(req)
-    ret = "N/A"
-    for entry in data:
-        ret = entry[0]
-    return ret
+    return ret        
 
 def swap(array, i1, i2):
     tmp = array[i1]
