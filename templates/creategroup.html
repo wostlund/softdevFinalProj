@@ -33,18 +33,18 @@
 	<h1>Create a group</h1>
 	<form action="/group" method="POST">
 	  <div class="form-group">
-	    <input type="text" class="form-control" placeholder="Group name" id="groupname">
+	    <input type="text" class="form-control" placeholder="Group name" name="groupname">
 	  </div> <br>
 	  <div class="form-group">
-	    <input type="text" class="form-control" placeholder="Price Estimate" id="price">
+	    <input type="text" class="form-control" placeholder="Price Estimate" name="budget">
 	  </div> <br>
 	  <div class="form-group">
-	    <input type="text" class="form-control" placeholder="Exchange Date" id="exchange-date">
+	    <input type="text" class="form-control" placeholder="Exchange Date" name="exchange-date">
 	  </div> <br>
 	  <div class="form-group">
-	    <textarea class="form-control" rows="5" id="invites" placeholder="Usernames of people to invite..."></textarea>
+	    <textarea class="form-control" rows="5" name="invites" placeholder="Usernames of people to invite..."></textarea>
 	  </div> <br>
-	  <button type="submit" class="btn btn-default" id="creategroup-button">Create Group</button>
+	  <button type="submit" class="btn btn-default" name = "creategroup" id="creategroup-button">Create Group</button>
 	</form>
       </div>
     </div>
