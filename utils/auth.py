@@ -32,7 +32,7 @@ def login(username, password):
             return -1 # Incorrect Password
         return -2 # Invalid Username
     except:
-        return -3 # Fatal Error - Should Never Happen
+        return -3 # Fatal Error
 
 def register(name, username, password):
     try:
@@ -43,7 +43,7 @@ def register(name, username, password):
                ('%s','%s','%s')"%(username, browns(password), format_caps(name))
         c.execute(req)
         disconnect(db)
-        return 0 # Good
+        return 0 # Success
     except:
         return -1 # Failure
 
@@ -51,13 +51,13 @@ def change_password(username, oldpass, newpass):
     try:
         db = connect()
         c = db.cursor()
-        if login(username, oldpass):
+        if login(username, oldpass) == 0:
             req = "UPDATE userdata \
                    SET password = '%s' \
                    WHERE username = '%s'"%(browns(newpass), username)
             c.execute(req)
         disconnect(db)
-        return 0
+        return 0 # Success
     except:
         return -1 # Failure
         

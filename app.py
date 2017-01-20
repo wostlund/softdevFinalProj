@@ -68,7 +68,11 @@ def shop():
 
 @app.route("/creategroup", methods = ["POST", "GET"])
 def creategroup():
+	form = request.form
 	if ("username" in session):
+		if ("creategroup" in form):
+			gid = add_group(form["groupname"], form["budget"], form["exchange-date"])
+			return redirect(url_for('group', groupid = gid))
 		return render_template('creategroup.html', login = "login", title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
@@ -92,16 +96,12 @@ def blacklist():
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
-@app.route("/group", methods = ["POST", "GET"])
-def groupcr():
-	#creates group in database
-	return render_template('group.html')
-
 @app.route("/group/<idnum>", methods = ["POST", "GET"])
 def group(idnum):
 	groupinfo = data.get_group_data(idnum)
 	if ("username" in session):
-		return render_template('group.html', login = "login", title = "", message = "");
+		ginfo = get_group_data(idnum)
+		return render_template('group.html', groupinfo = ginfo, login = "login", title = "", message = ginfo);
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
 
