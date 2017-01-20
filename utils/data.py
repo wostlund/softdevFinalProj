@@ -63,13 +63,14 @@ def add_group(groupname, budget, date): # To Add Users
     try:
         db = connect()
         c = db.cursor()
+        gid = (int)(largest_groupid()) + 1
         req = "INSERT INTO groupdata VALUES \
-               (%s, '%s', %s, '%s', '%s')"%(int(largest_groupid()) + 1, groupname, 0, budget, date)
+               (%s, '%s', %s, '%s', '%s')"%(gid, groupname, 0, budget, date)
         c.execute(req)
         disconnect(db)
-        return True
+        return gid
     except:
-        return False
+        return -1
 
 # Untested
 def add_blacklist(username, ignoreuser):
@@ -171,8 +172,6 @@ def get_blacklist(username): # Username Of Person Logged In
         ret += [i]
     disconnect(db)
     return ret
-    
-    
     
 # Database - Data Modification
 # ==========================================================================
