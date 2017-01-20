@@ -135,3 +135,8 @@ zichengZ -- 2017-01-19 14:51
 - Restructure group database
 - Edit group adding functions
 - Make data.py prettier and more organized
+
+venderbushW -- 2017-01-19 23:35
+- Implemented basic group creation
+- Implemented group by group ID URLs (still needs to be jinja'd)
+- The login is messed up right now though (?) so I can't test it!
