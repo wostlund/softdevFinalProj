@@ -1,4 +1,4 @@
-  function changeToRegister(){
+  function changeToLogin(){
       document.getElementById("register").style.display = "none";
       document.getElementById("login").style.display = "inherit";
   }
