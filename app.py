@@ -19,7 +19,7 @@ def root():
 		session.pop("username")
 		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "You have been logged out!")
 	if ("username" in session):
-		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"] + "!")
+		return render_template('main.html', title = "Ctrl.Alt.Gift", message = "")
 	return render_template('main.html', title = "Ctrl.Alt.Gift", message = "")
 
 @app.route("/logout", methods = ["POST", "GET"])
@@ -32,6 +32,7 @@ def logout():
 @app.route("/login", methods = ["POST", "GET"])
 def login():
 	form = request.form
+	print form
 	if ("register" in form):
 		if (auth.register(form["name"], form["username"], form["password"]) == 0):
 			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
@@ -47,7 +48,7 @@ def login():
 			return render_template('idashboard.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
 		else:
 			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
-	return render_template('login.html', title = "Login", message = "");
+	return render_template('login.html', title = "Login", message = "Login unsuccessful!");
 
 @app.route("/search", methods = ["POST", "GET"])
 def search():
@@ -71,7 +72,9 @@ def creategroup():
 	form = request.form
 	if ("username" in session):
 		if ("creategroup" in form):
+			print "Creating Group";
 			gid = add_group(form["groupname"], form["budget"], form["exchange-date"])
+			print gid
 			return redirect(url_for('group', groupid = gid))
 		return render_template('creategroup.html', login = "login", title = "Search", message = "");
 	else:

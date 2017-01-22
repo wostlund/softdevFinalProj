@@ -140,3 +140,7 @@ venderbushW -- 2017-01-19 23:35
 - Implemented basic group creation
 - Implemented group by group ID URLs (still needs to be jinja'd)
 - The login is messed up right now though (?) so I can't test it!
+
+venderbushW -- 2017-01-21 11:19
+- Fixed one part of broken login, but now the database part is broken
+- Identified problems with JS

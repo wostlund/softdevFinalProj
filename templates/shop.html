@@ -29,7 +29,7 @@
 <div class="container">
   <div class="row">
   {% for item in etsylist %} 
-      {%i = {{item['url']}} %}
+      {% set i = item["url"] %}
     <div class="col-sm-12">
       <div class="thumbnail">
 	<img src="{{item['imgurl']}}" height="300" width="363" alt="No Image Available">
@@ -47,7 +47,7 @@
     </div>
     <hr>
     <br>
-     {% endfor %}
+  {% endfor %}
   </div>
 </div>
 <script src = "../static/scripts/shop.js" type="text/javascript"></script>
