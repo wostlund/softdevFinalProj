@@ -6,7 +6,7 @@ import hashlib
 import os
 from flask import Flask, render_template, request, session, url_for
 #from utils import etsy, amazon, auth
-from utils import etsy, auth
+from utils import etsy, auth, data
 
 app = Flask(__name__)
 app.secret_key = 'secrets'
@@ -73,7 +73,7 @@ def creategroup():
 	if ("username" in session):
 		if ("creategroup" in form):
 			print "Creating Group";
-			gid = add_group(form["groupname"], form["budget"], form["exchange-date"])
+			gid = data.add_group(form["groupname"], form["budget"], form["exchange-date"])
 			print gid
 			return redirect(url_for('group', groupid = gid))
 		return render_template('creategroup.html', login = "login", title = "Search", message = "");
@@ -121,5 +121,5 @@ def makefile():
 
 if __name__ == "__main__":
     app.debug = True 
-    makefile()
+    #makefile()
     app.run()
