@@ -4,7 +4,7 @@ import random
 import csv
 import hashlib
 import os
-from flask import Flask, render_template, request, session, url_for
+from flask import Flask, render_template, request, session, url_for, redirect
 #from utils import etsy, amazon, auth
 from utils import etsy, auth, data
 
@@ -75,7 +75,7 @@ def creategroup():
 			print "Creating Group";
 			gid = data.add_group(form["groupname"], form["budget"], form["exchange-date"])
 			print gid
-			return redirect(url_for('group', groupid = gid))
+			return redirect(url_for('group', idnum = gid))
 		return render_template('creategroup.html', login = "login", title = "Search", message = "");
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
@@ -103,7 +103,7 @@ def blacklist():
 def group(idnum):
 	groupinfo = data.get_group_data(idnum)
 	if ("username" in session):
-		ginfo = get_group_data(idnum)
+		ginfo = data.get_group_data(idnum)
 		return render_template('group.html', groupinfo = ginfo, login = "login", title = "", message = ginfo);
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!");
