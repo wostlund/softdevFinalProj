@@ -144,3 +144,6 @@ venderbushW -- 2017-01-19 23:35
 venderbushW -- 2017-01-21 11:19
 - Fixed one part of broken login, but now the database part is broken
 - Identified problems with JS
+
+venderbushW -- 2017-01-21 13:04
+- Implemented groups for real and jinja'd the group page
