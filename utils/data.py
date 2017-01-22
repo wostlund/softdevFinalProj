@@ -69,6 +69,7 @@ def add_group(groupname, budget, date, users):
         req = "INSERT INTO groupdata VALUES \
                (%s, '%s', %s, '%s', '%s')"%(gid, groupname, 0, budget, date)
         c.execute(req)
+        disconnect(db)
         
         # Adding Members
         users = parse_textarea(users)
@@ -78,8 +79,7 @@ def add_group(groupname, budget, date, users):
 
         # Shuffling Members
         shuffle_group(gid)
-
-        disconnect(db)
+        
         print get_group_data(gid)
         return gid
     #except:
