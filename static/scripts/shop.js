@@ -1,22 +1,20 @@
-function ajax() {
+function wishlist(x) {
 
-    var i = document.getElementById("input").value;
-    var input = { 'text' : i };
+    var i = document.getElementsByClassName(x);
+    var input = {'name' : i[0].innerHTML,
+                 'price' : i[1].innerHTML,
+                 'link' : i[2].href,
+                 'submit' : 'wishlist'
+                };
     
-    var h = document.getElementById("h1");
-    h.innerHTML = i;
 
     $.ajax({
-	url: '/upcase',
-	type: 'GET',
+	url: '/dashboard',
+	type: 'POST',
 	data: input,
 	success: function( d ) {
-	    var h2 = document.getElementById("h2");
-	    d = JSON.parse(d);
-	    h2.innerHTML = d['result'];
-	}
-
-     });
+    }
+    });
     /*
     $.get("/upcase", input, function(d) {
 	    var h2 = document.getElementById("h2");
@@ -24,6 +22,32 @@ function ajax() {
 	    h2.innerHTML = d['result'];	
     });
      */
-};
+}
 
-document.getElementById("b").addEventListener( 'click', post );
+function shoppinglist(x) {
+
+    var i = document.getElementsByClassName(x);
+    var input = {'name' : i[0].innerHTML,
+                 'price' : i[1].innerHTML,
+                 'link' : i[2].href,
+                 'submit' : 'shoppinglist'
+                };
+    
+
+    $.ajax({
+	url: '/dashboard',
+	type: 'POST',
+	data: input,
+	success: function( d ) {
+    }
+    });
+    /*
+    $.get("/upcase", input, function(d) {
+	    var h2 = document.getElementById("h2");
+	    d = JSON.parse(d);
+	    h2.innerHTML = d['result'];	
+    });
+     */
+}
+
+
