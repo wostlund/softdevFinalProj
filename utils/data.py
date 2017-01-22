@@ -59,18 +59,29 @@ def add_user(username, password, name, email):
     except:
         return False
 
-def add_group(groupname, budget, date): # To Add Users
-    try:
+def add_group(groupname, budget, date, users):
+    #try:
         db = connect()
         c = db.cursor()
         gid = (int)(largest_groupid()) + 1
+
+        # Creating Group
         req = "INSERT INTO groupdata VALUES \
                (%s, '%s', %s, '%s', '%s')"%(gid, groupname, 0, budget, date)
         c.execute(req)
+        
+        # Adding Members
+        users = parse_textarea(users);
+        for entry in users:
+            add_user_to_group(entry, gid)
+
+        # Shuffling Members
+        shuffle_group(gid)
+
         disconnect(db)
         return gid
-    except:
-        return -1
+    #except:
+    #    return -1
 
 # Untested
 def add_blacklist(username, ignoreuser):
@@ -149,6 +160,17 @@ def get_group_data(groupid):
         return ret
     except:
         return False
+
+def get_groups():
+    db = connect()
+    c = db.cursor()
+    req = "SELECT * FROM groupdata"
+    data = c.execute(req)
+    ret = []
+    for i in data:
+        ret += [i]
+    disconnect(db)
+    return ret        
 
 def get_name(username):
     db = connect()
@@ -229,22 +251,16 @@ def largest_groupid():
     disconnect(db)
     return maxid
 
-def view_groups():
-    db = connect()
-    c = db.cursor()
-    req = "SELECT * FROM groupdata"
-    data = c.execute(req)
-    ret = []
-    for i in data:
-        ret += [i]
-    disconnect(db)
-    return ret        
-
 def swap(array, i1, i2):
     tmp = array[i1]
     array[i1] = array[i2]
     array[i2] = tmp
-    
+
+def parse_textarea(text, delimiter=None):
+    if delimiter is None:
+        return text.strip().split()
+    return text.strip().split(delimiter)
+
 # Initialization
 # ==========================================================================
 if (__name__ == "__main__"):
