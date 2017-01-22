@@ -71,7 +71,8 @@ def add_group(groupname, budget, date, users):
         c.execute(req)
         
         # Adding Members
-        users = parse_textarea(users);
+        users = parse_textarea(users)
+        print users
         for entry in users:
             add_user_to_group(entry, gid)
 
@@ -79,6 +80,7 @@ def add_group(groupname, budget, date, users):
         shuffle_group(gid)
 
         disconnect(db)
+        print get_group_data(gid)
         return gid
     #except:
     #    return -1
