@@ -6,7 +6,7 @@ function wishlist(x) {
                  'link' : i[2].href,
                  'submit' : 'wishlist'
                 };
-    
+    console.log(input['price']);
 
     $.ajax({
 	url: '/dashboard',
