@@ -1,6 +1,6 @@
 {% extends "basic.html" %}
 {% block body %}
-<script src = "../static/scripts/shop.js" type="text/javascript"></script>
+
 <nav class="navbar navbar-ct-success" id="navbar">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,8 +39,8 @@
 	  <p>{{item["description"]}}</p>
     <center>
     <p><a class="{{item['url']}}" href="{{item['url']}}" target = "_blank" role="button" class="btn btn-default" >View Item on Etsy</a></p>
-	  <button onclick="wishlist('i')" class="btn btn-default"  id="wish-button">Add to Wishlist</button>
-	  <button onclick="shoppinglist('i')" class="btn btn-default" id="shop-button">Add to Shopping list</button>
+	  <button onclick="wishlist('{{i}}')" class="btn btn-default"  id="wish-button">Add to Wishlist</button>
+	  <button onclick="shoppinglist('{{i}}')" class="btn btn-default" id="shop-button">Add to Shopping list</button>
     </center>
 	</div>
       </div>
@@ -50,5 +50,6 @@
   {% endfor %}
   </div>
 </div>
+<script src="../static/scripts/jquery.js" type="text/javascript"></script>
 <script src = "../static/scripts/shop.js" type="text/javascript"></script>
 {% endblock %}
