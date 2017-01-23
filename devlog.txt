@@ -150,3 +150,4 @@ venderbushW -- 2017-01-21 13:04
 
 stephanieY - 2017-01-23 14:31
 - Switched shopping and group lists in idashboard.
+- Implemented jinja for group.html
