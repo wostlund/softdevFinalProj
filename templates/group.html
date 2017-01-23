@@ -45,74 +45,30 @@
     <div class="col-lg-6">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Username</div>
+	<div class="panel-heading">{{pairuser}}</div>
 	<div class="panel-body">
-	  <p>This is username's wishlist.</p>
+	  <p>You've been paired with {{pairuser}}. This is {{pairuser}}'s wishlist.</p>
 	</div>
-
 	<!-- List group -->
 	<ul class="list-group">
-	  <li class="list-group-item">Link to items on wishlist</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
+	  {% for item in wishlist %}
+	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
+	  {% endfor %}
 	</ul>
       </div>
     </div>
     <div class="col-lg-6">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Username</div>
+	<div class="panel-heading">Other Members</div>
 	<div class="panel-body">
-	  <p>This is username's wishlist.</p>
+	  <p>Frickin randos.</p>
 	</div>
-
 	<!-- List group -->
 	<ul class="list-group">
-	  <li class="list-group-item">Link to items on wishlist</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
-	</ul>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-	<!-- Default panel contents -->
-	<div class="panel-heading">Username</div>
-	<div class="panel-body">
-	  <p>This is username's wishlist.</p>
-	</div>
-
-	<!-- List group -->
-	<ul class="list-group">
-	  <li class="list-group-item">Link to items on wishlist</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
-	</ul>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-	<!-- Default panel contents -->
-	<div class="panel-heading">Username</div>
-	<div class="panel-body">
-	  <p>This is username's wishlist.</p>
-	</div>
-
-	<!-- List group -->
-	<ul class="list-group">
-	  <li class="list-group-item">Link to items on wishlist</li>
-	  <li class="list-group-item">Dapibus ac facilisis in</li>
-	  <li class="list-group-item">Morbi leo risus</li>
-	  <li class="list-group-item">Porta ac consectetur ac</li>
-	  <li class="list-group-item">Vestibulum at eros</li>
+	  {% for member in group %}
+	  <li class="list-group-item">{{member}}</li>
+	  {% endfor %}
 	</ul>
       </div>
     </div>

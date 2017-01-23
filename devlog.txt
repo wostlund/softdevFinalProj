@@ -147,3 +147,7 @@ venderbushW -- 2017-01-21 11:19
 
 venderbushW -- 2017-01-21 13:04
 - Implemented groups for real and jinja'd the group page
+
+stephanieY - 2017-01-23 14:31
+- Switched shopping and group lists in idashboard.
+- Implemented jinja for group.html
