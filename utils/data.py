@@ -181,12 +181,15 @@ def get_groups_dict(username):
 
     # Parsing Names
     names = []
+
+    db = connect()
+    c = db.cursor()
     for i in ids:
         req = "SELECT groupname FROM groupdata WHERE groupid == %s"%(i)
         data = c.execute(req)
         for entry in data:
             names += [entry[0]]
-
+    disconnect(db)
     ret = []
     for i in range(len(ids)):
         tmp = {}
