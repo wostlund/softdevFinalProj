@@ -1,6 +1,7 @@
-function ajax() {
+function aja() {
 //taken from Mr. DW's tutorial
-    var i = document.getElementById("textbox")
+    var i = document.getElementById("textbox").value;
+    console.log(i);
     var input = { 'edited-blacklist' : i };
 
 
