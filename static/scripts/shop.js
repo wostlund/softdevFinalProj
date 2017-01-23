@@ -1,12 +1,12 @@
 function wishlist(x) {
-
+console.log("asgnhjktdsgrr");
     var i = document.getElementsByClassName(x);
     var input = {'name' : i[0].innerHTML,
                  'price' : i[1].innerHTML,
                  'link' : i[2].href,
                  'submit' : 'wishlist'
                 };
-    console.log(input['price']);
+    console.log(input);
 
     $.ajax({
 	url: '/dashboard',
@@ -32,7 +32,7 @@ function shoppinglist(x) {
                  'link' : i[2].href,
                  'submit' : 'shoppinglist'
                 };
-    
+    console.log(input);
 
     $.ajax({
 	url: '/dashboard',
