@@ -168,12 +168,14 @@ def get_groups_list(username):
     c = db.cursor()
     req = "SELECT groupid FROM groups WHERE username == '%s'"%(username)
     data = c.execute(req)
-    disconnect(db)
 
     ret = []
     for entry in data:
         ret += [entry[0]]
-        
+    disconnect(db)
+
+    return ret
+                    
 def get_groups_dict(username):
 
     # IDs
