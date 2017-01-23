@@ -155,3 +155,6 @@ stephanieY - 2017-01-23 14:31
 
 venderbushW -- 2017-01-23 14:53
 - More group implementation with the backend, pushing lists
+
+stephanieY - 2017-01-23 15:36
+- added script src to basic.html
