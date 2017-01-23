@@ -163,16 +163,38 @@ def get_group_data(groupid):
     except:
         return False
 
-def get_groups():
+def get_groups_list(username):
     db = connect()
     c = db.cursor()
-    req = "SELECT * FROM groupdata"
+    req = "SELECT groupid FROM groups WHERE username == '%s'"%(username)
     data = c.execute(req)
-    ret = []
-    for i in data:
-        ret += [i]
     disconnect(db)
-    return ret        
+
+    ret = []
+    for entry in data:
+        ret += [entry[0]]
+        
+def get_groups_dict(username):
+
+    # IDs
+    ids = get_groups_list(username)
+
+    # Parsing Names
+    names = []
+    for i in ids:
+        req = "SELECT groupname FROM groupdata WHERE groupid == %s"%(i)
+        data = c.execute(req)
+        for entry in data:
+            names += [entry[0]]
+
+    ret = []
+    for i in range(len(ids)):
+        tmp = {}
+        tmp['groupid'] = ids[i]
+        tmp['groupname'] = names[i]
+        ret += [tmp]
+
+    return ret
 
 def get_name(username):
     db = connect()
@@ -262,6 +284,18 @@ def parse_textarea(text, delimiter=None):
     if delimiter is None:
         return text.strip().split()
     return text.strip().split(delimiter)
+
+def groups():
+    db = connect()
+    c = db.cursor()
+    req = "SELECT * FROM groupdata"
+    data = c.execute(req)
+    ret = []
+    for i in data:
+        ret += [i]
+    disconnect(db)
+    return ret        
+
 
 # Initialization
 # ==========================================================================

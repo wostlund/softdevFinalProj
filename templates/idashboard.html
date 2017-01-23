@@ -31,19 +31,19 @@
     <div class="col-lg-6">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">My Groups</div>
+	<div class="panel-heading">My Shopping List</div>
 	<div class="panel-body">
-	  <p><a class="btn btn-primary btn-lg" href="/creategroup" role="button">Create New Group</a></p>
+	  <p><a class="btn btn-primary btn-lg" href="/search" role="button">Search the Shop</a></p>
 	</div>
 
 	<!-- List group -->
-	<ul class="list-group" id="mygroups">
-	  {% for group in mygroupslist %}
-	  <li class="list-group-item"><a href="/group/{{group[id]}}">{{group[name]}}</a></li>
+	<ul class="list-group">
+	  {% for item in shoppinglist %}
+	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
 	  {% endfor %}
 	</ul>
       </div>
-    </div><!--col-->
+    </div>
     <div class="col-lg-6">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
@@ -65,19 +65,19 @@
     <div class="col-lg-6">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">My Shopping List</div>
+	<div class="panel-heading">My Groups</div>
 	<div class="panel-body">
-	  <p><a class="btn btn-primary btn-lg" href="/search" role="button">Search the Shop</a></p>
+	  <p><a class="btn btn-primary btn-lg" href="/creategroup" role="button">Create New Group</a></p>
 	</div>
 
 	<!-- List group -->
-	<ul class="list-group">
-	  {% for item in shoppinglist %}
-	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
+	<ul class="list-group" id="mygroups">
+	  {% for group in mygroupslist %}
+	  <li class="list-group-item"><a href="/group/{{group[id]}}">{{group[name]}}</a></li>
 	  {% endfor %}
 	</ul>
       </div>
-    </div>
+    </div><!--col-->
     <div class="col-lg-6">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
