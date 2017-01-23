@@ -158,3 +158,4 @@ venderbushW -- 2017-01-23 14:53
 
 stephanieY - 2017-01-23 15:36
 - added script src to basic.html
+- put message into a row/col div
