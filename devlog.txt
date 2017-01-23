@@ -152,3 +152,6 @@ stephanieY - 2017-01-23 14:31
 - Switched shopping and group lists in idashboard.
 - Implemented jinja for group.html
 - Switched navbar for login.
+
+venderbushW -- 2017-01-23 14:53
+- More group implementation with the backend, pushing lists

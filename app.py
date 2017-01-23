@@ -47,15 +47,15 @@ def login():
 			session["username"] = form["username"]
 			return render_template('idashboard.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
 		else:
-			return render_template('login.html', title = "Login", message = "Invalid Username or Password!");
-	return render_template('login.html', title = "Login", message = "Login unsuccessful!");
+			return render_template('login.html', title = "Login", message = "Invalid Username or Password!")
+	return render_template('login.html', title = "Login", message = "Login unsuccessful!")
 
 @app.route("/search", methods = ["POST", "GET"])
 def search():
 	if ("username" in session):
- 		return render_template('search.html', title = "Search", login = "login", message = "");
+ 		return render_template('search.html', title = "Search", login = "login", message = "")
 	else:
-	 	return render_template('login.html', title = "Login", message = "You must log in to continue!");
+	 	return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
 @app.route("/shop", methods = ["POST", "GET"])
 def shop():
@@ -63,9 +63,9 @@ def shop():
 	if ("username" in session):
 		searchstring = form["searchstring"]
 		elist = etsy.search(searchstring, 24)
-		return render_template('shop.html', login = "login", title = "Search", etsylist = elist , message = elist);
+		return render_template('shop.html', login = "login", title = "Search", etsylist = elist , message = elist)
 	else:
-		return render_template('login.html', title = "Login", message = "You must log in to continue!");
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
 @app.route("/creategroup", methods = ["POST", "GET"])
 def creategroup():
@@ -76,9 +76,9 @@ def creategroup():
 			gid = data.add_group(form["groupname"], form["budget"], form["exchange-date"], form["invites"])
 			print gid
 			return redirect(url_for('group', idnum = gid))
-		return render_template('creategroup.html', login = "login", title = "Search", message = "");
+		return render_template('creategroup.html', login = "login", title = "Search", message = "")
 	else:
-		return render_template('login.html', title = "Login", message = "You must log in to continue!");
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
 @app.route("/dashboard", methods = ["POST", "GET"])
 def dashboard():
@@ -87,26 +87,33 @@ def dashboard():
 		# if ("update-blacklist-button" in form):
 		# 	newblack = form["edited-blacklist"]
 		# 	#Do the function to change text blacklist to list
+		print session["username"]
+		gdict = data.get_groups_dict(session["username"]);
+		print gdict
 
-		return render_template('idashboard.html', blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "");
+		return render_template('idashboard.html', mygroupslist = gdict, blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "")
 	else:
-		return render_template('login.html', title = "Login", message = "You must log in to continue!");
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
 	if ("username" in session):
-		return render_template('editblack.html', myblacklist = "", login = "login", title = "Search", message = "");
+		return render_template('editblack.html', myblacklist = "", login = "login", title = "Search", message = "")
 	else:
-		return render_template('login.html', title = "Login", message = "You must log in to continue!");
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
 @app.route("/group/<idnum>", methods = ["POST", "GET"])
 def group(idnum):
-	groupinfo = data.get_group_data(idnum)
 	if ("username" in session):
-		ginfo = data.get_group_data(idnum)
-		return render_template('group.html', groupinfo = ginfo, login = "login", title = "", message = ginfo);
+		usergroups = data.get_groups_list(session["username"]);
+		if (idnum in usergroups):
+			ginfo = data.get_group_data(idnum)
+			return render_template('group.html', pairuser = "", wishlist = [], members = "", groupinfo = ginfo, login = "login", title = "", message = ginfo)
+		else:
+			return redirect(url_for('dashboard'))
 	else:
-		return render_template('login.html', title = "Login", message = "You must log in to continue!");
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")
+	
 
 def makefile():
 	key = open("keys.txt", "r").read().strip().split("\n")[0]
