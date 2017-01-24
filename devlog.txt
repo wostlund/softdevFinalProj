@@ -159,3 +159,8 @@ venderbushW -- 2017-01-23 14:53
 stephanieY - 2017-01-23 15:36
 - added script src to basic.html
 - put message into a row/col div
+
+stephanieY - 2017-01-23 21:04
+- finished writing custom.css to make it festive
+- Note to Zicheng: critical to fix group creation so that the original creator is included. Winston, is that why after the user creates a group, they are taken back to dashboard instead of the group page?
+- Note to Winston: As of now, the url doesn't change from login to dashboard after successfully logging in, but the idashboard.html is rendered. What's going on?
