@@ -77,7 +77,7 @@
 	<!-- List group -->
 	<ul class="list-group" id="mygroups">
 	  {% for group in mygroupslist %}
-	  <li class="list-group-item"><a href="/group/{{group[id]}}">{{group[name]}}</a></li>
+	  <li class="list-group-item"><a href="/group/{{group['groupid']}}">{{group['groupname']}}</a></li>
 	  {% endfor %}
 	</ul>
       </div>

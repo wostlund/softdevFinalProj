@@ -91,6 +91,8 @@ def dashboard():
 		gdict = data.get_groups_dict(session["username"]);
 		print gdict
 
+		
+		#return render_template('idashboard.html', mygroupslist = gdict, blacklist = data.get_blacklist(session["username"]), shoppinglist = [], login = "login", title = "Search", message = "")
 		return render_template('idashboard.html', mygroupslist = gdict, blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
