@@ -163,7 +163,7 @@ def get_group_data(groupid):
         ret['membernames'] = get_group_users(groupid)
         return ret
     except:
-        return False
+        return {}
 
 def get_groups_list(username):
     db = connect()
@@ -212,7 +212,7 @@ def get_group_users(groupid):
     for entry in data:
         names += [entry[0]]
     disconnect(db)
-    return ret
+    return names
 
 def get_name(username):
     db = connect()
