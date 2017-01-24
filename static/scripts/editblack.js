@@ -2,7 +2,7 @@ function aja() {
 //taken from Mr. DW's tutorial
     var i = document.getElementById("textbox").value;
     console.log(i);
-    var input = { 'edited-blacklist' : i };
+    var input = { 'text' : i, 'submit':'editblack' };
 
 
     $.ajax({
