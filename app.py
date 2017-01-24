@@ -45,10 +45,10 @@ def login():
 		print auth.login(form["username"], form["password"])
 		if (auth.login(form["username"], form["password"]) == 0):
 			session["username"] = form["username"]
-			return render_template('idashboard.html', title = "Ctrl.Alt.Gift", message = "Welcome, " + session["username"]);
+			return redirect(url_for('dashboard'))
 		else:
 			return render_template('login.html', title = "Login", message = "Invalid Username or Password!")
-	return render_template('login.html', title = "Login", message = "Login unsuccessful!")
+	return render_template('login.html', title = "Login", message = "")
 
 @app.route("/search", methods = ["POST", "GET"])
 def search():
