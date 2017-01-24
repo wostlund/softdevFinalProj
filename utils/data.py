@@ -160,6 +160,7 @@ def get_group_data(groupid):
             ret['budget'] = entry[3]
             ret['date'] = entry[4]
         disconnect(db)
+        ret['membernames'] = get_group_users(groupid)
         return ret
     except:
         return False
@@ -202,6 +203,17 @@ def get_groups_dict(username):
 
     return ret
 
+def get_group_users(groupid):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT username FROM groups WHERE groupid == %s"%(groupid)
+    data = c.execute(req)
+    names = []
+    for entry in data:
+        names += [entry[0]]
+    disconnect(db)
+    return ret
+
 def get_name(username):
     db = connect()
     c = db.cursor()
@@ -217,7 +229,7 @@ def get_blacklist(username): # Username Of Person Logged In
     db = connect()
     c = db.cursor()
     req = "SELECT * FROM blacklists WHERE username == '%s'"%(username)
-    data = c.execute()
+    data = c.execute(req)
     ret = []
     for entry in data:
         i = [entry[1], entry[2]]
