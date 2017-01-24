@@ -32,17 +32,12 @@ def logout():
 @app.route("/login", methods = ["POST", "GET"])
 def login():
 	form = request.form
-	print form
 	if ("register" in form):
 		if (auth.register(form["name"], form["username"], form["password"]) == 0):
 			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
 		else:
 			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
 	if ("login" in form):
-		print "login initiated"
-		print form["username"]
-		print form["password"]
-		print auth.login(form["username"], form["password"])
 		if (auth.login(form["username"], form["password"]) == 0):
 			session["username"] = form["username"]
 			return redirect(url_for('dashboard'))
@@ -72,9 +67,7 @@ def creategroup():
 	form = request.form
 	if ("username" in session):
 		if ("creategroup" in form):
-			print "Creating Group";
 			gid = data.add_group(form["groupname"], form["budget"], form["exchange-date"], form["invites"])
-			print gid
 			return redirect(url_for('group', idnum = gid))
 		return render_template('creategroup.html', login = "login", title = "Search", message = "")
 	else:
@@ -87,11 +80,7 @@ def dashboard():
 		# if ("update-blacklist-button" in form):
 		# 	newblack = form["edited-blacklist"]
 		# 	#Do the function to change text blacklist to list
-		print session["username"]
 		gdict = data.get_groups_dict(session["username"]);
-		print gdict
-
-		
 		#return render_template('idashboard.html', mygroupslist = gdict, blacklist = data.get_blacklist(session["username"]), shoppinglist = [], login = "login", title = "Search", message = "")
 		return render_template('idashboard.html', mygroupslist = gdict, blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "")
 	else:
@@ -108,7 +97,7 @@ def blacklist():
 def group(idnum):
 	if ("username" in session):
 		usergroups = data.get_groups_list(session["username"]);
-		if (idnum in usergroups):
+		if int(idnum) in usergroups:
 			ginfo = data.get_group_data(idnum)
 			return render_template('group.html', pairuser = "", wishlist = [], members = "", groupinfo = ginfo, login = "login", title = "", message = ginfo)
 		else:

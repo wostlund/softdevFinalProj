@@ -168,3 +168,6 @@ stephanieY - 2017-01-23 21:04
 venderbushW -- 2017-01-24 13:04
 - Fixed jinja on the dashboard
 - Still fixing group/dashboard interaction (link list)
+
+venderbushW -- 2017-01-24 13:58
+- Fixed group authentication
