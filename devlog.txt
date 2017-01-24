@@ -171,3 +171,4 @@ venderbushW -- 2017-01-24 13:04
 
 venderbushW -- 2017-01-24 13:58
 - Fixed group authentication
+- Fixed group creation adding user

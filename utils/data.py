@@ -59,7 +59,7 @@ def add_user(username, password, name, email):
     except:
         return False
 
-def add_group(groupname, budget, date, users):
+def add_group(username, groupname, budget, date, users):
     #try:
         db = connect()
         c = db.cursor()
@@ -73,6 +73,7 @@ def add_group(groupname, budget, date, users):
         
         # Adding Members
         users = parse_textarea(users)
+        add_user_to_group(username, gid)
         print users
         for entry in users:
             add_user_to_group(entry, gid)
