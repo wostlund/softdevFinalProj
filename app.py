@@ -58,7 +58,7 @@ def shop():
 	if ("username" in session):
 		searchstring = form["searchstring"]
 		elist = etsy.search(searchstring, 24)
-		return render_template('shop.html', login = "login", title = "Search", etsylist = elist , message = elist)
+		return render_template('shop.html', login = "login", title = "Search", etsylist = elist , message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
