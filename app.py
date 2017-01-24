@@ -99,8 +99,9 @@ def group(idnum):
 	if ("username" in session):
 		usergroups = data.get_groups_list(session["username"]);
 		if int(idnum) in usergroups:
+			recipient = data.get_recipient(idnum, session["username"])
 			ginfo = data.get_group_data(idnum)
-			return render_template('group.html', pairuser = "", wishlist = [], memberlist = ginfo["membernames"], groupinfo = ginfo, login = "login", title = "", message = ginfo)
+			return render_template('group.html', pairuser = recipient, wishlist = [], memberlist = ginfo["membernames"], groupinfo = ginfo, login = "login", title = "", message = ginfo)
 		else:
 			return redirect(url_for('dashboard'))
 	else:
