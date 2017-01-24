@@ -225,6 +225,17 @@ def get_name(username):
     disconnect(db)
     return ret
 
+def get_recipient(groupid, username):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT recipient FROM groups WHERE groupid == %s AND username == '%s'"%(groupid, username)
+    data = c.execute(req)
+    ret = "N/A"
+    for entry in data:
+        ret = entry[0]
+    disconnect(db)
+    return ret
+
 def get_blacklist(username): # Username Of Person Logged In
     db = connect()
     c = db.cursor()
