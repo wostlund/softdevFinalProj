@@ -80,9 +80,10 @@ def dashboard():
 		# if ("update-blacklist-button" in form):
 		# 	newblack = form["edited-blacklist"]
 		# 	#Do the function to change text blacklist to list
-		gdict = data.get_groups_dict(session["username"]);
-		#return render_template('idashboard.html', mygroupslist = gdict, blacklist = data.get_blacklist(session["username"]), shoppinglist = [], login = "login", title = "Search", message = "")
-		return render_template('idashboard.html', mygroupslist = gdict, blacklist = [], shoppinglist = [], login = "login", title = "Search", message = "")
+		gdict = data.get_groups_dict(session["username"])
+		blist = data.get_blacklist(session["username"])
+		return render_template('idashboard.html', mygroupslist = gdict, blacklist = blist, shoppinglist = [], login = "login", title = "Search", message = "")
+		
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
