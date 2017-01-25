@@ -91,14 +91,17 @@ def dashboard():
 def blacklist():
 	form = request.form
 	if ("username" in session):
+		blist = data.get_blacklist(session["username"])
 		if ("remove-blacklist-button" in form):
-			data.remove_blacklist(session["username"], form["removeFromBlacklist"])
-			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+			data.remove_blacklist(session["username"], form["username"])
+			blist = data.get_blacklist(session["username"])
+			return render_template('editblack.html', myblacklist = blist, login = "login", title = "Blacklist", message = "")
 		if ("add-blacklist-button" in form):
-			data.add_blacklist(session["username"], form["addToBlacklist"])
-			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+			data.add_blacklist(session["username"], form["username"])
+			blist = data.get_blacklist(session["username"])
+			return render_template('editblack.html', myblacklist = blist, login = "login", title = "Blacklist", message = "")
 		else:
-			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+			return render_template('editblack.html', myblacklist = blist, login = "login", title = "Blacklist", message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
