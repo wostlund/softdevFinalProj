@@ -4,6 +4,7 @@ import random
 import csv
 import hashlib
 import os
+import json
 from flask import Flask, render_template, request, session, url_for, redirect
 #from utils import etsy, amazon, auth
 from utils import etsy, auth, data
@@ -83,7 +84,7 @@ def dashboard():
 		gdict = data.get_groups_dict(session["username"])
 		blist = data.get_blacklist(session["username"])
 		return render_template('idashboard.html', mygroupslist = gdict, blacklist = blist, shoppinglist = [], login = "login", title = "Search", message = "")
-		
+	
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
@@ -105,6 +106,51 @@ def blacklist():
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
+
+@app.route("/addtowish", methods = ["POST", "GET"])
+def addtowish():
+	if ("username" in session):
+		blist = data.get_wishlist(session["username"])
+                task = request.args.get("task")
+                name = request.args.get("name")
+                link = request.args.get("link")
+                print(task)
+                if (task == "remove"):
+                        print("2134")
+		        data.remove_list("wishlist", session["username"], name, link)
+		        blist = data.get_wishlist(session["username"])
+                        #return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Removed Item from Wishlist")
+                        return json.dumps({})
+		else:
+			data.add_wishlist(session["username"], name, link)
+			blist = data.get_wishlist(session["username"])
+			#return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Added Item to Wishlist")
+                        return json.dumps({})
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")
+
+@app.route("/addtoshop", methods = ["POST", "GET"])
+def addtoshop():
+	if ("username" in session):
+		blist = data.get_wishlist(session["username"])
+                task = request.args.get("task")
+                name = request.args.get("name")
+                link = request.args.get("link")
+                print(task)
+                if (task == "remove"):
+                        #print("2134")
+		        data.remove_list("shoppinglist", session["username"], name, link)
+		        blist = data.get_wishlist(session["username"])
+                        return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Removed Item from Shopping list")
+                        #return json.dumps({})
+		else:
+			data.add_wishlist(session["username"], name, link)
+			blist = data.get_shoppinglist(session["username"])
+			return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Added Item to Shopping list")
+                        #return json.dumps({})
+	else:
+		return render_template('login.html', title = "Login", message = "You must log in to continue!")    
+        
 @app.route("/group/<idnum>", methods = ["POST", "GET"])
 def group(idnum):
 	if ("username" in session):
@@ -132,6 +178,6 @@ def makefile():
 	print " * Key File Generated!"
 
 if __name__ == "__main__":
-    app.debug = True 
-    #makefile()
-    app.run()
+        app.debug = True 
+        #makefile()
+        app.run()

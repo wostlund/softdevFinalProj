@@ -2,9 +2,8 @@ function wishlist(x) {
 console.log("asgnhjktdsgrr");
     var i = document.getElementsByClassName(x);
     var input = {'name' : i[0].innerHTML,
-                 'price' : i[1].innerHTML,
+                 //'price' : i[1].innerHTML,
                  'link' : i[2].href,
-                 'submit' : 'wishlist'
                 };
     if(document.getElementById("wish").innerHTML == "Remove From Wishlist"){
         input['task'] = 'remove';
@@ -14,8 +13,8 @@ console.log("asgnhjktdsgrr");
     console.log(input);
 
     $.ajax({
-	url: '/dashboard',
-	type: 'POST',
+	url: '/addtowish',
+	type: 'GET',
 	data: input,
 	success: function( d ) {
         if(document.getElementById("wish").innerHTML == "Remove From Wishlist"){
@@ -38,20 +37,19 @@ function shoppinglist(x) {
 
     var i = document.getElementsByClassName(x);
     var input = {'name' : i[0].innerHTML,
-                 'price' : i[1].innerHTML,
+                 //'price' : i[1].innerHTML,
                  'link' : i[2].href,
-                 'submit' : 'shoppinglist'
                 };
     if(document.getElementById("shop").innerHTML == "Remove From Shopping list"){
         input['task'] = 'remove';
     }else{
         input['task'] = 'add';
     }
-    console.log(input);
+    //console.log(input);
 
     $.ajax({
-	url: '/dashboard',
-	type: 'POST',
+	url: '/addtoshopping',
+	type: 'GET',
 	data: input,
 	success: function( d ) {
                 if(document.getElementById("shop").innerHTML == "Remove From Shopping list"){
