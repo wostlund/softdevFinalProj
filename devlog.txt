@@ -180,7 +180,7 @@ stephanieY -- 2017-01-24 21:19
 - Reformatted group.html.
 - Reformatted editblack.html, Winston and Will need to update the corresponding js and Python.
 
-zichengZ --2017-01-24 23:52
+zichengZ -- 2017-01-24 23:52
 - Add functions to allow AJAX implementation in shoppinglist and wishlist
 - Begin revising shuffle_group to allow blacklist shuffling
   - Hypothesize that it will be O(n^2) space complexity and O(n!) time complexity
@@ -193,6 +193,14 @@ zichengZ --2017-01-24 23:52
 stephanieY -- 2017-01-25 14:01
 - Reformatted editblack.html to make it a form with two inputs.
 
-venderbushW -- 2017-01-24 15:33
+venderbushW -- 2017-01-25 15:33
 - Added functionality for adding/removing users from blacklist in flask
 - Added rudimentary wishlist to groups page
+
+zichengz -- 2017-01-25 17:54
+- Complete the shuffling algorithm WITH blacklists
+- Add several more database functions
+- Increase database uniformity (lowercase usernames)
+- Add checks to several functions
+  - No duplicate blacklist entries
+  - No duplicate usernames when registering

@@ -51,6 +51,7 @@ def add_user(username, password, name):
     try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         req = "INSERT INTO userdata VALUES \
                ('%s','%s','%s')"%(username, password, name)
         c.execute(req)
@@ -63,6 +64,7 @@ def add_group(username, groupname, budget, date, users):
     #try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         gid = (int)(largest_groupid()) + 1
 
         # Creating Group
@@ -76,10 +78,11 @@ def add_group(username, groupname, budget, date, users):
         add_user_to_group(username, gid)
         print users
         for entry in users:
+            entry = entry.lower()
             add_user_to_group(entry, gid)
 
         # Shuffling Members
-        shuffle_group(gid)
+        #shuffle_group(gid)
         
         print get_group_data(gid)
         return gid
@@ -88,19 +91,23 @@ def add_group(username, groupname, budget, date, users):
 
 # Untested
 def add_blacklist(username, ignoreuser):
-    try:
-        if (user_exists(ignore) == 1 
+    #try:
+        username = username.lower()
+        ignoreuser = ignoreuser.lower()
+        if (username == ignoreuser):
+            return False 
+        if (user_exists(ignoreuser) == 1 
             and check_duplicate(username, ignoreuser) == 0):
             db = connect()
             c = db.cursor()
-            ignorename = get_name(username)
+            ignorename = get_name(ignoreuser)
             req = "INSERT INTO blacklists VALUES \
                    ('%s', '%s', '%s')"%(username, ignoreuser, ignorename)
             c.execute(req)
             disconnect(db)
             return True
         return False
-    except:
+    #except:
         return False
     
 # Untested
@@ -108,6 +115,7 @@ def add_list(listtype, username, itemname, link):
     try:
         db.connect()
         c = db.cursor()
+        username = username.lower()
         req = "INSERT INTO %s VALUES \
                ('%s', '%s', '%s')"%(listtype, username, itemname, link)
         c.execute(req)
@@ -121,6 +129,7 @@ def add_wishlist(username, itemname, link=None):
     try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         if link is None:
             link = "N/A"
         req = "INSERT INTO wishlists VALUES \
@@ -136,6 +145,7 @@ def add_shoppinglist(username, itemname, link):
     try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         req = "INSERT INTO shoppinglists VALUES \
                ('%s', '%s', '%s')"%(username, itemname, link)
         c.execute(req)
@@ -148,6 +158,7 @@ def add_user_to_group(username, groupid):
     try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         if (user_exists(username) == 0):
             return False
         req = "INSERT INTO groups VALUES \
@@ -169,6 +180,7 @@ def remove_blacklist(username, removeuser):
     try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         req = "DELETE FROM blacklists \
                WHERE username == '%s' AND ignoreuser == '%s'"%(username, removeuser)
         c.execute(req)
@@ -182,6 +194,7 @@ def remove_list(listtype, username, itemname, link):
     try:
         db = connect()
         c = db.cursor()
+        username = username.lower()
         req = "DELETE FROM %ss \
                WHERE username == '%s' AND itemname == '%s' AND link == '%s'"%(listtype, username, itemname, link)
         c.execute(req)
@@ -231,6 +244,7 @@ def get_group_data(groupid):
 def get_groups_list(username):
     db = connect()
     c = db.cursor()
+    username = username.lower()
     req = "SELECT groupid FROM groups WHERE username == '%s'"%(username)
     data = c.execute(req)
     ret = []
@@ -240,6 +254,7 @@ def get_groups_list(username):
     return ret
                     
 def get_groups_dict(username):
+    username = username.lower()
 
     # IDs
     ids = get_groups_list(username)
@@ -279,6 +294,7 @@ def get_group_users(groupid):
 def get_wishlist(username):
     db = connect()
     c = db.cursor()
+    username = username.lower()
     req = "SELECT * FROM wishlists WHERE username == '%s'"%(username)
     data = c.execute(req)
     ret = []
@@ -308,6 +324,7 @@ def get_shoppinglist(username):
 def get_name(username):
     db = connect()
     c = db.cursor()
+    username = username.lower()
     req = "SELECT name FROM userdata WHERE username == '%s'"%(username)
     data = c.execute(req)
     ret = "N/A"
@@ -319,6 +336,7 @@ def get_name(username):
 def get_recipient(groupid, username):
     db = connect()
     c = db.cursor()
+    username = username.lower()
     req = "SELECT recipient FROM groups WHERE groupid == %s AND username == '%s'"%(groupid, username)
     data = c.execute(req)
     ret = "N/A"
@@ -330,6 +348,7 @@ def get_recipient(groupid, username):
 def get_blacklist(username): # Username Of Person Logged In
     db = connect()
     c = db.cursor()
+    username = username.lower()
     req = "SELECT * FROM blacklists WHERE username == '%s'"%(username)
     data = c.execute(req)
     ret = []
@@ -373,16 +392,62 @@ def shuffle_group(groupid):
             for j in ignore:
                 ignore_add += [j[0]]
             blacklists += [ ignore_add ] # Indexed Correctly
+        ''' # Debugging
         for i in blacklists:
             print i
-
         print "==================="
+        '''
+        retval = False
         people = [i[0] for i in tmp]
-        for i in people:
-            print i
         path = [] # Solution Set
-        tests = []
-        index = 0 # Needed?
+        seed = people[0]        
+        tested = [seed] # Nodes In Graph
+        tests = [] # Connections To New Nodes
+        test_count = 0 # Number of Tests
+
+        # Seeding Tests
+        test_count += add_tests(tests, seed, people, tested, blacklists[0])
+        #while (index < tests): # Calling len is inefficient
+        ''' # Debugging
+        print people
+        print tests
+        print tested
+        print test_count
+        print "==================="
+        '''
+        while (test_count > 0):
+            next_test = tests.pop()
+            test_count -= 1
+            next_node = next_test[1]
+            while (tested[-1] != next_test[0]):
+                tested.pop()
+            tested += [next_node]
+            tests_added = add_tests(tests, next_node, people, tested, 
+                                    blacklists[people.index(next_node)])
+            test_count += tests_added
+
+            if tests_added == 0: # No More Paths Left
+                if (len(tested) == len(people) and
+                    people[0] not in blacklists[people.index(tested[-1])]):
+                    '''# Debugging
+                    print people # Original Ordering
+                    print tested # Final Ordering
+                    return "FOUND"
+                    '''
+                    # Updating Database - Successful
+                    for i in range(len(people)):
+                        req = "UPDATE groups \
+                               SET recipient = '%s' \
+                               WHERE username == '%s'"%(tested[i], tested[i-1])
+                        c.execute(req)
+                    retval = True
+                    break;
+                else:
+                    tested.pop()
+            ''' # Debugging    
+            print "\n", tests
+            print tests_added, " | ", tested
+            '''
 
         '''
         # Non Blacklist Shuffle
@@ -397,11 +462,11 @@ def shuffle_group(groupid):
         for i in tmp:
             req = "UPDATE groups \
                    SET recipient = '%s' \
-                   WHERE username = '%s'"%(i[1], i[0])
+                   WHERE username == '%s'"%(i[1], i[0])
             c.execute(req)
         '''
         disconnect(db)
-        return True
+        return retval
     #except:
         return False
     
@@ -410,6 +475,7 @@ def shuffle_group(groupid):
 def user_exists(username):
     db = connect()
     c = db.cursor()
+    username = username.lower()
     req = "SELECT EXISTS \
            ( SELECT 1 FROM userdata WHERE username == '%s' )"%(username)
     data = c.execute(req)
@@ -422,6 +488,8 @@ def user_exists(username):
 def check_duplicate(username, ignoreuser):
     db = connect()
     c = db.cursor()
+    username = username.lower()
+    ignoreuser = ignoreuser.lower()
     req = "SELECT EXISTS \
            ( SELECT 1 FROM blacklists \
            WHERE username == '%s' AND ignoreuser == '%s' )"%(username, ignoreuser)
@@ -432,16 +500,16 @@ def check_duplicate(username, ignoreuser):
     disconnect(db)
     return ret
 
-def add_tests(tests, user, users, blacklist):
+def add_tests(tests, user, users, tested, blacklist):
     # tests - array buffer
     # user - user to expand cases
     # users - userlist
     # blacklist - blacklist of user
     add = []
     for person in users:
-        if person not in blacklist and person != user:
-            add += [[user, person]]
-    tests += [add]
+        if person not in blacklist and person not in tested and person != user:
+                add += [[user, person]][::-1]
+    tests += add
     return len(add)
 
 def largest_groupid():

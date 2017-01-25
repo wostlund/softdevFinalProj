@@ -39,7 +39,7 @@ def register(name, username, password):
         db = connect()
         c = db.cursor()
         username = username.lower().strip()
-        if check_safe(username) < 0:
+        if check_safe(username) < 0 or user_exists(username):
             return -1 # Invalid Username
         req = "INSERT INTO userdata VALUES \
                ('%s','%s','%s')"%(username, browns(password), format_caps(name))
@@ -66,6 +66,19 @@ def change_password(username, oldpass, newpass):
         
 # Helper Functions
 # ==========================================================================
+def user_exists(username):
+    db = connect()
+    c = db.cursor()
+    username = username.lower()
+    req = "SELECT EXISTS \
+           ( SELECT 1 FROM userdata WHERE username == '%s' )"%(username)
+    data = c.execute(req)
+    ret = -1
+    for i in data:
+        ret = i[0]
+    disconnect(db)
+    return ret
+
 def check_safe(username):
     if (username == "drop tables"):
         return -2 # You think you're clever, don't you.
