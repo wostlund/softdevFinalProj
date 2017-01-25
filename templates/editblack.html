@@ -34,16 +34,26 @@
 	<p></p>
 	<form action="/editblack" method="POST">
 	  <div class="input-group">
-	    <input type="text" class="form-control" placeholder="Enter username" name="addToBlacklist">
-	  </div> <br>
+	    <input type="text" class="form-control" placeholder="Enter username" name="username">
+	  </div><br>
 	  <button type="submit" class="btn btn-default" name="add-blacklist-button">Add to Blacklist</button>
-	  <br><br>
-	  <div class="input-group">
-	    <input type="text" class="form-control" placeholder="Enter username" name="removeFromBlacklist">
-	  </div> <br>
 	  <button type="submit" class="btn btn-default" name="remove-blacklist-button">Remove from Blacklist</button>
 	  <br>
         </form>
+	<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">My Blacklist</div>
+	<div class="panel-body">
+	  <p><a class="btn btn-primary btn-lg" href="/blacklist" role="button">Edit Blacklist</a></p>
+	</div>
+
+	<!-- List group -->
+	<ul class="list-group">
+	  {% for person in blacklist %}
+	  <li class="list-group-item">{{person[name]}}</li>
+	  {% endfor %}
+	</ul>
+      </div>
       </div>
     </div>
   </div>
