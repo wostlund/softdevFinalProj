@@ -89,14 +89,17 @@ def add_group(username, groupname, budget, date, users):
 # Untested
 def add_blacklist(username, ignoreuser):
     try:
-        db = connect()
-        c = db.cursor()
-        ignorename = get_name(username)
-        req = "INSERT INTO blacklists VALUES \
-              ('%s', '%s', '%s')"%(username, ignoreuser, ignorename)
-        c.execute(req)
-        disconnect(db)
-        return True
+        if (user_exists(username) == 1 
+            and check_duplicate(username, ignoreuser) == 0):
+            db = connect()
+            c = db.cursor()
+            ignorename = get_name(username)
+            req = "INSERT INTO blacklists VALUES \
+                   ('%s', '%s', '%s')"%(username, ignoreuser, ignorename)
+            c.execute(req)
+            disconnect(db)
+            return True
+        return False
     except:
         return False
     
@@ -145,6 +148,8 @@ def add_user_to_group(username, groupid):
     try:
         db = connect()
         c = db.cursor()
+        if (user_exists(username) == 0):
+            return False
         req = "INSERT INTO groups VALUES \
                (%s, '%s', '%s')"%(groupid, username, username) # Unshuffled
         c.execute(req)
@@ -359,9 +364,6 @@ def shuffle_group(groupid):
             tmp += [[i[1], i[2]]]
         for i in range(7 * mem):
             swap(tmp, random.randint(0, mem-1), random.randint(0, mem-1))
-        for i in tmp:
-            print i
-        print "==================="
 
         # Blacklist Shuffle
         blacklists = []
@@ -373,6 +375,14 @@ def shuffle_group(groupid):
             blacklists += [ ignore_add ] # Indexed Correctly
         for i in blacklists:
             print i
+
+        print "==================="
+        people = [i[0] for i in tmp]
+        for i in people:
+            print i
+        path = [] # Solution Set
+        tests = []
+        index = 0 # Needed?
 
         '''
         # Non Blacklist Shuffle
@@ -397,6 +407,43 @@ def shuffle_group(groupid):
     
 # Helper Functions
 # ==========================================================================
+def user_exists(username):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT EXISTS \
+           ( SELECT 1 FROM userdata WHERE username == '%s' )"%(username)
+    data = c.execute(req)
+    ret = -1
+    for i in data:
+        ret = i[0]
+    disconnect(db)
+    return ret
+
+def check_duplicate(username, ignoreuser):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT EXISTS \
+           ( SELECT 1 FROM blacklists \
+           WHERE username == '%s' AND ignoreuser == '%s' )"%(username, ignoreuser)
+    data = c.execute(req)
+    ret = -1
+    for i in data:
+        ret = i[0]
+    disconnect(db)
+    return ret
+
+def add_tests(tests, user, users, blacklist):
+    # tests - array buffer
+    # user - user to expand cases
+    # users - userlist
+    # blacklist - blacklist of user
+    add = []
+    for person in users:
+        if person not in blacklist and person != user:
+            add += [[user, person]]
+    tests += [add]
+    return len(add)
+
 def largest_groupid():
     db = connect()
     c = db.cursor()
