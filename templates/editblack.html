@@ -34,7 +34,7 @@
       <input class="form-control" name="addtoBlacklist" id="addtoBlacklist" type="text" placeholder="Enter a username of someone to add to your blacklist.">
     </div>
     <div class="col-lg-4">
-      <button onclick="" class="btn btn-default" id="add-blacklist-button">Remove from Blacklist</button>
+      <button onclick="" class="btn btn-default" id="add-blacklist-button">Add to Blacklist</button>
     </div>    
     <div class="col-lg-8 col-lg-offset-2">
       {% for person in blacklist %} 
@@ -43,7 +43,7 @@
 	  <div class="caption">
 	    <h5>{{person}}</h5>
 	    <center>
-	      <button onclick="" class="btn btn-default" id="remove-blacklist-button">Add to Blacklist</button>
+	      <button onclick="" class="btn btn-default" id="remove-blacklist-button">Remove from Blacklist</button>
 	    </center>
 	  </div>
 	</div>
