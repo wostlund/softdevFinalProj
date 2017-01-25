@@ -1,0 +1,51 @@
+DOCUMENTATION FOR DATABASE FUNCTIONS
+
+================================================
+General Functions
+================================================
+<database object> connect()
+  * precond: database is closed and exists
+  * postcond: opens database, returns object pointing to it
+
+void disconnect(<database object> db)
+  * precond: database is open
+  * postcond: saves changes to database and closes it
+
+================================================
+auth.py - Registration Functions
+================================================
+int login(String username, String password)
+  * precond: password is not hashed
+  * postcond: returns -2 if username doesn't exist
+    	      	      -1 if password is incorrect
+		       0 if successful login
+		      -3 otherwise
+
+int register(String name, String username, String password)
+  * precond: password is not hashed
+  * postcond: returns  0 if registration is successful
+    	      	      -1 if invalid username
+		      -2 otherwise  
+
+int change_password(String username, String oldpass, String newpass)
+  * precond: 
+  * postcond: returns  0 if password successfully changed
+    	      	      -1 if unsuccessful attempt
+		      -2 otherwise 
+
+================================================
+data.py
+================================================
+boolean add_user(String username, String password, String name)
+  * precond: database exists
+  * postcond: attempts to add user to database
+    	      returns T if user is successfully added
+    	      	      F otherwise
+
+boolean add_group(String username, String groupname, String budget,
+		  String date, String users)
+  * precond: users is separated by newlines
+  * postcond: generates a group with the appropriate values
+    	      assigns the group an id and updates groupdata 
+	      returns the groupid of the created group if successful
+	      	      -1 otherwise
