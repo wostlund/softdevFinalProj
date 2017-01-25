@@ -197,7 +197,7 @@ def change_list(inputs): # inputs should be a dictionary
         task = inputs['task'] # add | remove
         if task == "add":
             return add_list(listtype, username, itemname, link)
-        else if task == "remove":
+        elif task == "remove":
             return remove_list(listtype, username, itemname, link)
         else:
             return False
