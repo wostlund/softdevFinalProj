@@ -13,6 +13,7 @@ console.log("asgnhjktdsgrr");
 	type: 'POST',
 	data: input,
 	success: function( d ) {
+        document.getElementById("wish").innerHTML = "Remove From Wishlist";
     }
     });
     /*
@@ -39,6 +40,7 @@ function shoppinglist(x) {
 	type: 'POST',
 	data: input,
 	success: function( d ) {
+        document.getElementById("shop").innerHTML = "Remove From Shopping list";
     }
     });
     /*
