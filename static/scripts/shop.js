@@ -48,7 +48,7 @@ function shoppinglist(x) {
     //console.log(input);
 
     $.ajax({
-	url: '/addtoshopping',
+	url: '/addtoshop',
 	type: 'GET',
 	data: input,
 	success: function( d ) {
