@@ -28,11 +28,6 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      {{message}}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12">
       <h1>{{groupinfo["groupname"]}}</h1>
     </div>
   </div>
@@ -46,35 +41,38 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-8 col-lg-offset-2">
       <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">{{pairuser}}</div>
+	<div class="panel-heading">Group Members</div>
+	<div class="panel-body">
+	  <ul class="list-group">
+	    {% for person in memberlist %}
+	    <li class="list-group-item"><center>{{person}}</center></li>
+	    {% endfor %}
+	  </ul>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">You've been paired with {{pairuser}}!</div>
 	<div class="panel-body">
 	  <p>You've been paired with {{pairuser}}. This is {{pairuser}}'s wishlist.</p>
 	</div>
 	<!-- List group -->
 	<ul class="list-group">
 	  {% for item in wishlist %}
-	  <li class="list-group-item"><a href="{{item[url]}}">{{item['name']}}</a></li>
+	  <li class="list-group-item"><center><a href="{{item[url]}}"><{{item['name']}}</a></center></li>
 	  {% endfor %}
 	</ul>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-	<!-- Default panel contents -->
-	<div class="panel-heading">Group Members</div>
-	<div class="panel-body">
-	<ul class="list-group">
-	{% for person in memberlist %}
-	  <li class="list-group-item">{{person}}</li>
-	{% endfor %}
-	</ul>
-	  
-	</div>
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
+
+

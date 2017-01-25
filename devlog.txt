@@ -175,3 +175,6 @@ venderbushW -- 2017-01-24 13:58
 
 venderbushW -- 2017-01-24 15:33
 - Added group members to group page
+
+stephanieY - 2017-01-24 21:19
+- Reformatted group.html.
