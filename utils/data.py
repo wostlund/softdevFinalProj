@@ -270,6 +270,36 @@ def get_group_users(groupid):
     disconnect(db)
     return names
 
+# Untested
+def get_wishlist(username):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT * FROM wishlists WHERE username == '%s'"%(username)
+    data = c.execute(req)
+    ret = []
+    for entry in data:
+        tmp = {}
+        tmp['name'] = entry[1]
+        tmp['link'] = entry[2]
+        ret += [tmp]
+    disconnect(db)
+    return ret
+
+# Untested
+def get_shoppinglist(username):
+    db = connect()
+    c = db.cursor()
+    req = "SELECT * FROM shoppinglists WHERE username == '%s'"%(username)
+    data = c.execute(req)
+    ret = []
+    for entry in data:
+        tmp = {}
+        tmp['name'] = entry[1]
+        tmp['link'] = entry[2]
+        ret += [tmp]
+    disconnect(db)
+    return ret
+
 def get_name(username):
     db = connect()
     c = db.cursor()
