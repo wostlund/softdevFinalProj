@@ -89,8 +89,16 @@ def dashboard():
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
+	form = request.form
 	if ("username" in session):
-		return render_template('editblack.html', myblacklist = "", login = "login", title = "Search", message = "")
+		if ("remove-blacklist-button" in form):
+			data.remove_blacklist(session["username"], form["removeFromBlacklist"])
+			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+		if ("add-blacklist-button" in form):
+			data.add_blacklist(session["username"], form["addToBlacklist"])
+			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+		else:
+			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
