@@ -89,8 +89,16 @@ def dashboard():
 
 @app.route("/blacklist", methods = ["POST", "GET"])
 def blacklist():
+	form = request.form
 	if ("username" in session):
-		return render_template('editblack.html', myblacklist = "", login = "login", title = "Search", message = "")
+		if ("remove-blacklist-button" in form):
+			data.remove_blacklist(session["username"], form["removeFromBlacklist"])
+			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+		if ("add-blacklist-button" in form):
+			data.add_blacklist(session["username"], form["addToBlacklist"])
+			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
+		else:
+			return render_template('editblack.html', myblacklist = "", login = "login", title = "Blacklist", message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
@@ -101,7 +109,8 @@ def group(idnum):
 		if int(idnum) in usergroups:
 			recipient = data.get_recipient(idnum, session["username"])
 			ginfo = data.get_group_data(idnum)
-			return render_template('group.html', pairuser = recipient, wishlist = [], memberlist = ginfo["membernames"], groupinfo = ginfo, login = "login", title = "", message = ginfo)
+			wlist = data.get_wishlist(recipient)
+			return render_template('group.html', pairuser = recipient, wishlist = wlist, memberlist = ginfo["membernames"], groupinfo = ginfo, login = "login", title = "", message = ginfo)
 		else:
 			return redirect(url_for('dashboard'))
 	else:

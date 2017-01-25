@@ -192,3 +192,7 @@ zichengZ --2017-01-24 23:52
 
 stephanieY -- 2017-01-25 14:01
 - Reformatted editblack.html to make it a form with two inputs.
+
+venderbushW -- 2017-01-24 15:33
+- Added functionality for adding/removing users from blacklist in flask
+- Added rudimentary wishlist to groups page
