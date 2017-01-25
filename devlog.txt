@@ -178,3 +178,4 @@ venderbushW -- 2017-01-24 15:33
 
 stephanieY - 2017-01-24 21:19
 - Reformatted group.html.
+- Reformatted editblack.html, Winston and Will need to update the corresponding js and Python.

@@ -27,17 +27,30 @@
 <br><br><br>
 <div class="container">
   <div class="row">
+    <div class="col-lg-12">
+      <h1>Edit Blacklist</h1>
+    </div>
+    <div class="col-lg-8">
+      <input class="form-control" name="addtoBlacklist" id="addtoBlacklist" type="text" placeholder="Enter a username of someone to add to your blacklist.">
+    </div>
+    <div class="col-lg-4">
+      <button onclick="" class="btn btn-default" id="add-blacklist-button">Remove from Blacklist</button>
+    </div>    
     <div class="col-lg-8 col-lg-offset-2">
-      <div class="jumbotron" id="landing">
-	{{message}}
-	<h1>Edit Blacklist</h1>
-	<form method="POST">
-	  <div class="form-group">
-	    <textarea class="form-control" id="textbox" rows="5" name="edited-blacklist">{{myblacklist}}</textarea>
-	  </div> <br>
-	  <button id ="submit" onclick="aja()" class="btn btn-default" name="update-blacklist-button">Update Blacklist</button>
-	</form>
+      {% for person in blacklist %} 
+      <div class="col-sm-12">
+	<div class="thumbnail">
+	  <div class="caption">
+	    <h5>{{person}}</h5>
+	    <center>
+	      <button onclick="" class="btn btn-default" id="remove-blacklist-button">Remove from Blacklist</button>
+	    </center>
+	  </div>
+	</div>
       </div>
+      <hr>
+      <br>
+      {% endfor %}
     </div>
   </div>
 </div>
