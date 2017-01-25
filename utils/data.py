@@ -89,7 +89,7 @@ def add_group(username, groupname, budget, date, users):
 # Untested
 def add_blacklist(username, ignoreuser):
     try:
-        if (user_exists(username) == 1 
+        if (user_exists(ignore) == 1 
             and check_duplicate(username, ignoreuser) == 0):
             db = connect()
             c = db.cursor()
