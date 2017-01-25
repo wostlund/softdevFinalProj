@@ -47,7 +47,7 @@ def reset():
     
 # Database - Data Addition
 # ==========================================================================
-def add_user(username, password, name, email):
+def add_user(username, password, name):
     try:
         db = connect()
         c = db.cursor()
@@ -96,10 +96,24 @@ def add_blacklist(username, ignoreuser):
               ('%s', '%s', '%s')"%(username, ignoreuser, ignorename)
         c.execute(req)
         disconnect(db)
+        return True
     except:
         return False
     
 # Untested
+def add_list(listtype, username, itemname, link):
+    try:
+        db.connect()
+        c = db.cursor()
+        req = "INSERT INTO %s VALUES \
+               ('%s', '%s', '%s')"%(listtype, username, itemname, link)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False
+    
+# Untested - Obsoleted
 def add_wishlist(username, itemname, link=None):
     try:
         db = connect()
@@ -114,7 +128,7 @@ def add_wishlist(username, itemname, link=None):
     except:
         return False  
 
-# Untested
+# Untested - Obsoleted
 def add_shoppinglist(username, itemname, link):
     try:
         db = connect()
@@ -144,8 +158,52 @@ def add_user_to_group(username, groupid):
     except:
         return False
 
+# Database - Data Removal
+# ==========================================================================
+def remove_blacklist(username, removeuser):
+    try:
+        db = connect()
+        c = db.cursor()
+        req = "DELETE FROM blacklists \
+               WHERE username == '%s' AND ignoreuser == '%s'"%(username, removeuser)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False
+
+# Untested
+def remove_list(listtype, username, itemname, link):
+    try:
+        db = connect()
+        c = db.cursor()
+        req = "DELETE FROM %ss \
+               WHERE username == '%s' AND itemname == '%s' AND link == '%s'"%(listtype, username, itemname, link)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False
+
 # Database - Data Retrieval
 # ==========================================================================
+# Untested
+def change_list(inputs): # inputs should be a dictionary
+    try:
+        listtype = inputs['submit'] + "s" # wishlists | shoppinglists
+        username = inputs['username']
+        itemname = inputs['name']
+        link = inputs['link']
+        task = inputs['task'] # add | remove
+        if task == "add":
+            return add_list(listtype, username, itemname, link)
+        else if task == "remove":
+            return remove_list(listtype, username, itemname, link)
+        else:
+            return False
+    except:
+        return False
+
 def get_group_data(groupid):
     try:
         db = connect()
@@ -170,12 +228,10 @@ def get_groups_list(username):
     c = db.cursor()
     req = "SELECT groupid FROM groups WHERE username == '%s'"%(username)
     data = c.execute(req)
-
     ret = []
     for entry in data:
         ret += [entry[0]]
     disconnect(db)
-
     return ret
                     
 def get_groups_dict(username):
@@ -247,11 +303,11 @@ def get_blacklist(username): # Username Of Person Logged In
         ret += [i]
     disconnect(db)
     return ret
-    
+
 # Database - Data Modification
 # ==========================================================================
 def shuffle_group(groupid):
-    try:
+    #try:
         db = connect()
         c = db.cursor()
 
@@ -261,8 +317,8 @@ def shuffle_group(groupid):
         mem = 0
         for i in c:
             mem = i[0]
-        if mem == 0:
-            return False # No Members, Shuffle Fails
+        if mem < 2:
+            return False # Not Enough Members, Shuffle Fails
 
         req = "SELECT * FROM groups WHERE groupid = %s"%(groupid)
         c.execute(req)
@@ -273,10 +329,29 @@ def shuffle_group(groupid):
             tmp += [[i[1], i[2]]]
         for i in range(7 * mem):
             swap(tmp, random.randint(0, mem-1), random.randint(0, mem-1))
+        for i in tmp:
+            print i
+        print "==================="
+
+        # Blacklist Shuffle
+        blacklists = []
+        for i in range(len(tmp)):
+            ignore = get_blacklist(tmp[i][0])
+            ignore_add = []
+            for j in ignore:
+                ignore_add += [j[0]]
+            blacklists += [ ignore_add ] # Indexed Correctly
+        for i in blacklists:
+            print i
+
+        '''
+        # Non Blacklist Shuffle
+        # The Shuffle
         for i in range(mem):
             tmp[i][1] = tmp[i-1][0]
         #for i in tmp:
         #   print i # Debugging
+
 
         # Updating Database
         for i in tmp:
@@ -284,10 +359,10 @@ def shuffle_group(groupid):
                    SET recipient = '%s' \
                    WHERE username = '%s'"%(i[1], i[0])
             c.execute(req)
-
+        '''
         disconnect(db)
         return True
-    except:
+    #except:
         return False
     
 # Helper Functions
@@ -324,7 +399,6 @@ def groups():
         ret += [i]
     disconnect(db)
     return ret        
-
 
 # Initialization
 # ==========================================================================

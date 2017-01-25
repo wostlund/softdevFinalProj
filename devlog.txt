@@ -148,7 +148,7 @@ venderbushW -- 2017-01-21 11:19
 venderbushW -- 2017-01-21 13:04
 - Implemented groups for real and jinja'd the group page
 
-stephanieY - 2017-01-23 14:31
+stephanieY -- 2017-01-23 14:31
 - Switched shopping and group lists in idashboard.
 - Implemented jinja for group.html
 - Switched navbar for login.
@@ -156,11 +156,11 @@ stephanieY - 2017-01-23 14:31
 venderbushW -- 2017-01-23 14:53
 - More group implementation with the backend, pushing lists
 
-stephanieY - 2017-01-23 15:36
+stephanieY -- 2017-01-23 15:36
 - added script src to basic.html
 - put message into a row/col div
 
-stephanieY - 2017-01-23 21:04
+stephanieY -- 2017-01-23 21:04
 - finished writing custom.css to make it festive
 - Note to Zicheng: critical to fix group creation so that the original creator is included. Winston, is that why after the user creates a group, they are taken back to dashboard instead of the group page?
 - Note to Winston: As of now, the url doesn't change from login to dashboard after successfully logging in, but the idashboard.html is rendered. What's going on?
@@ -176,6 +176,17 @@ venderbushW -- 2017-01-24 13:58
 venderbushW -- 2017-01-24 15:33
 - Added group members to group page
 
-stephanieY - 2017-01-24 21:19
+stephanieY -- 2017-01-24 21:19
 - Reformatted group.html.
 - Reformatted editblack.html, Winston and Will need to update the corresponding js and Python.
+
+zichengZ --2017-01-24 23:52
+- Add functions to allow AJAX implementation in shoppinglist and wishlist
+- Begin revising shuffle_group to allow blacklist shuffling
+  - Hypothesize that it will be O(n^2) space complexity and O(n!) time complexity
+- Make adding to wishlist and shoppinglist modular
+- Add more retrieval options for recipients
+- Change get_group_data to return a list of users
+- Begin adding database removal functions (untested)
+- Begin adding some documentation for functions in data.py and auth.py
+
