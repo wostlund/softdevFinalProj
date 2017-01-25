@@ -6,6 +6,11 @@ console.log("asgnhjktdsgrr");
                  'link' : i[2].href,
                  'submit' : 'wishlist'
                 };
+    if(document.getElementById("wish").innerHTML == "Remove From Wishlist"){
+        input['task'] = 'remove';
+    }else{
+        input['task'] = 'add';
+    }
     console.log(input);
 
     $.ajax({
@@ -13,7 +18,11 @@ console.log("asgnhjktdsgrr");
 	type: 'POST',
 	data: input,
 	success: function( d ) {
-        document.getElementById("wish").innerHTML = "Remove From Wishlist";
+        if(document.getElementById("wish").innerHTML == "Remove From Wishlist"){
+            document.getElementById("wish").innerHTML = "Add to Wishlist";
+        }else{
+            document.getElementById("wish").innerHTML = "Remove From Wishlist";
+        }
     }
     });
     /*
@@ -33,6 +42,11 @@ function shoppinglist(x) {
                  'link' : i[2].href,
                  'submit' : 'shoppinglist'
                 };
+    if(document.getElementById("shop").innerHTML == "Remove From Shopping list"){
+        input['task'] = 'remove';
+    }else{
+        input['task'] = 'add';
+    }
     console.log(input);
 
     $.ajax({
@@ -40,7 +54,11 @@ function shoppinglist(x) {
 	type: 'POST',
 	data: input,
 	success: function( d ) {
-        document.getElementById("shop").innerHTML = "Remove From Shopping list";
+                if(document.getElementById("shop").innerHTML == "Remove From Shopping list"){
+            document.getElementById("shop").innerHTML = "Add to Shopping list";
+        }else{
+            document.getElementById("shop").innerHTML = "Remove From Shopping list";
+        }
     }
     });
     /*
