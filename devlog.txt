@@ -190,3 +190,5 @@ zichengZ --2017-01-24 23:52
 - Begin adding database removal functions (untested)
 - Begin adding some documentation for functions in data.py and auth.py
 
+stephanieY -- 2017-01-25 14:01
+- Reformatted editblack.html to make it a form with two inputs.
