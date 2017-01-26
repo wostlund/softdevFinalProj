@@ -210,3 +210,7 @@ zichengZ -- 2017-01-25 19:55
 - Remove debugging statements
 - Automatically shuffle groups upon creation
 - Prevent group from being created if shuffling fails
+
+venderbushW -- 2017-01-25 22:27
+- Added remove buttons
+- fixed final bugs and stuff

@@ -79,6 +79,10 @@ def creategroup():
 def dashboard():
 	form = request.form
 	if ("username" in session):
+		if ("remWishList" in form):
+			data.remove_list("wishlists", session["username"], form["name"], form["link"])
+		if ("remShoppingList" in form):
+			data.remove_list("shoppinglists", session["username"], form["name"], form["link"])
 		gdict = data.get_groups_dict(session["username"])
 		blist = data.get_blacklist(session["username"])
 		wlist = data.get_wishlist(session["username"])
