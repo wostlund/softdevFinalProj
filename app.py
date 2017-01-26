@@ -6,7 +6,6 @@ import hashlib
 import os
 import json
 from flask import Flask, render_template, request, session, url_for, redirect
-#from utils import etsy, amazon, auth
 from utils import etsy, auth, data
 
 app = Flask(__name__)
