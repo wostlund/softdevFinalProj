@@ -224,7 +224,7 @@ def remove_group(gid):
 # Untested
 def change_list(inputs): # inputs should be a dictionary
     try:
-        listtype = inputs['submit'] + "s" # wishlists | shoppinglists
+        listtype = inputs['submit'] # wishlists | shoppinglists
         username = inputs['username']
         itemname = inputs['name']
         link = inputs['link']
