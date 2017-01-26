@@ -99,5 +99,15 @@
       </div>
     </div>
   </div>
+  <hr>
+
+  Your Wishlist
+   {% for item in wishlist %}
+	  <li class="list-group-item">{{item}}</li>
+	{% endfor %}
+
+
+
+  Your Shoppinglist
 </div>
 {% endblock %}
