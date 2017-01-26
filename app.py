@@ -6,6 +6,7 @@ import hashlib
 import os
 import json
 from flask import Flask, render_template, request, session, url_for, redirect
+#from utils import etsy, amazon, auth
 from utils import etsy, auth, data
 
 app = Flask(__name__)
@@ -58,7 +59,7 @@ def shop():
 	if ("username" in session):
 		searchstring = form["searchstring"]
 		elist = etsy.search(searchstring, 24)
-		return render_template('shop.html', login = "login", title = "Shop", etsylist = elist , message = "")
+		return render_template('shop.html', login = "login", title = "Search", etsylist = elist , message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
@@ -69,7 +70,7 @@ def creategroup():
 		if ("creategroup" in form):
 			gid = data.add_group(session["username"], form["groupname"], form["budget"], form["exchange-date"], form["invites"])
 			return redirect(url_for('group', idnum = gid))
-		return render_template('creategroup.html', login = "login", title = "Create Group", message = "")
+		return render_template('creategroup.html', login = "login", title = "Search", message = "")
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
@@ -77,12 +78,13 @@ def creategroup():
 def dashboard():
 	form = request.form
 	if ("username" in session):
+		# if ("update-blacklist-button" in form):
+		# 	newblack = form["edited-blacklist"]
+		# 	#Do the function to change text blacklist to list
 		gdict = data.get_groups_dict(session["username"])
 		blist = data.get_blacklist(session["username"])
-		wlist = data.get_wishlist(session["username"])
-		slist = data.get_shoppinglist(session["username"])
-		return render_template('idashboard.html', mygroupslist = gdict, blacklist = blist, wishlist = wlist, shoppinglist = slist, title = "Dashboard", message = "")
-		
+		return render_template('idashboard.html', mygroupslist = gdict, blacklist = blist, shoppinglist = [], login = "login", title = "Search", message = "")
+	
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")
 
@@ -115,7 +117,7 @@ def addtowish():
                 print(task)
                 if (task == "remove"):
                         print("2134")
-		        data.remove_list("wishlist", session["username"], name, link)
+		        data.remove_list("wishlists", session["username"], name, link)
 		        blist = data.get_wishlist(session["username"])
                         #return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Removed Item from Wishlist")
                         return json.dumps({})
@@ -137,15 +139,15 @@ def addtoshop():
                 print(task)
                 if (task == "remove"):
                         #print("2134")
-		        data.remove_list("shoppinglist", session["username"], name, link)
-		        blist = data.get_wishlist(session["username"])
-                        return render_template('shop.html', login = "login", title = "", etsylist = blist , message = "Successfully Removed Item from Shopping list")
-                        #return json.dumps({})
+		        data.remove_list("shoppinglists", session["username"], name, link)
+		        blist = data.get_shoppinglist(session["username"])
+                        #return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Removed Item from Shopping list")
+                        return json.dumps({})
 		else:
-			data.add_wishlist(session["username"], name, link)
+			data.add_shoppinglist(session["username"], name, link)
 			blist = data.get_shoppinglist(session["username"])
-			return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Added Item to Shopping list")
-                        #return json.dumps({})
+			#return render_template('shop.html', login = "login", title = "Search", etsylist = blist , message = "Successfully Added Item to Shopping list")
+                        return json.dumps({})
 	else:
 		return render_template('login.html', title = "Login", message = "You must log in to continue!")    
         
