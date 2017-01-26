@@ -69,6 +69,8 @@ def creategroup():
 	if ("username" in session):
 		if ("creategroup" in form):
 			gid = data.add_group(session["username"], form["groupname"], form["budget"], form["exchange-date"], form["invites"])
+			if (gid < 0):
+				return redirect(url_for('dashboard', message="Group could not be created!"))
 			return redirect(url_for('group', idnum = gid))
 		return render_template('creategroup.html', login = "login", title = "Search", message = "")
 	else:
