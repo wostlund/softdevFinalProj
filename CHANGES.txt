@@ -1,0 +1,23 @@
+Ctrl.Alt.Gift
+Stephanie, Winston, Will, Zicheng 
+st234pa, wvenderbush, wostlund, zzcnick
+
+Design Changes
+  - Removed obsoleted files
+    * group.py - merged with data.py
+    * amazon.py - used etsy API instead
+  - Added useful files
+    * main.html - homepage template
+    * Multiple .js files - better organization purposes
+    * Paperkit (UI Kit) from Creative Tim - beautiful CSS formatting
+  - Changed website layout
+    * Single dashboard for organization purposes
+    * Changed design of adding and removing adding while shopping
+  - Database restructuring
+    * Required links for wishlist additions
+    * Moved groupname to groupdata
+    * Removed email from userdata
+    * Merge low and high budget values into a single value
+  - Additional features
+    * Implemented AJAX while shipping to allow dynamic shopping experience 
+      without refreshing the page
