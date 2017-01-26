@@ -40,9 +40,9 @@
       <div class="thumbnail">
 	<img src="{{item['imgurl']}}" height="300" width="363" alt="No Image Available">
 	<div class="caption">
-	  <h5 class="{{item['url']}}">{{item["name"]}}</h5>
-    <p><b class="{{item['url']}}">{{item["price"]}}</b></p>
-	  <p>{{item["description"]}}</p>
+	  <h5 class="{{item['url']}}">{{item["name"]|safe}}</h5>
+    <p><b class="{{item['url']}}">{{item["price"]|safe}}</b></p>
+	  <p>{{item["description"]|safe}}</p>
     <center>
     <p><a class="{{item['url']}} btn btn-default" href="{{item['url']}}" target = "_blank" role="button" >View Item on Etsy</a></p>
 	  <button id="{{i}}w" onclick="wishlist('{{i}}')" class="btn btn-default">Add to Wishlist</button>
