@@ -42,6 +42,7 @@
 
 	<!-- List group -->
 	<ul class="list-group">
+		{{shoppinglist}}
 	  {% for item in shoppinglist %}
 	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
 	  {% endfor %}
@@ -58,6 +59,7 @@
 
 	<!-- List group -->
 	<ul class="list-group">
+	{{wishlist}}
 	  {% for item in wishlist %}
 	  <li class="list-group-item"><a href="{{item[url]}}">{{item[name]}}</a></li>
 	  {% endfor %}
@@ -99,15 +101,5 @@
       </div>
     </div>
   </div>
-  <hr>
-
-  Your Wishlist
-   {% for item in wishlist %}
-	  <li class="list-group-item">{{item}}</li>
-	{% endfor %}
-
-
-
-  Your Shoppinglist
 </div>
 {% endblock %}
