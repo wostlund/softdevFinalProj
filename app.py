@@ -157,6 +157,7 @@ def addtoshop():
         
 @app.route("/group/<idnum>", methods = ["POST", "GET"])
 def group(idnum):
+	form = request.form
 	if ("username" in session):
 		usergroups = data.get_groups_list(session["username"]);
 		if int(idnum) in usergroups:
