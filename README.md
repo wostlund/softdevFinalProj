@@ -3,6 +3,8 @@
 Stephanie, Winston, Will, Zicheng
 st234pa, wvenderbush, wostlund, zzcnick
 
+[Click Here For Our Video](https://www.youtube.com/watch?v=_SsfEcKzFBc&feature=youtu.be)
+
 ###The Idea
 We will create a Secret Santa gift giving platform that is better than Elfster. This tool will facilitate Secret Santa gift exchanges and make it really fun and cool.
 
