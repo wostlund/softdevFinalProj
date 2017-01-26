@@ -176,6 +176,10 @@ venderbushW -- 2017-01-24 13:58
 venderbushW -- 2017-01-24 15:33
 - Added group members to group page
 
+ostlundW -- 2017-01-24 17:24
+- Finished ajax for shop and editblack
+- Shop and editblack js buttons now change when the user clicks them
+
 stephanieY -- 2017-01-24 21:19
 - Reformatted group.html.
 - Reformatted editblack.html, Winston and Will need to update the corresponding js and Python.
@@ -196,6 +200,11 @@ stephanieY -- 2017-01-25 14:01
 venderbushW -- 2017-01-25 15:33
 - Added functionality for adding/removing users from blacklist in flask
 - Added rudimentary wishlist to groups page
+
+ostlundW -- 2017-01-25 16:56
+- Fixed ajax code to not send any redudant information
+- Created two new routes in app.py to get info given by the ajax and storing it in the database
+- Tested out changes resulting in more info. in the database
 
 zichengz -- 2017-01-25 17:54
 - Complete the shuffling algorithm WITH blacklists
