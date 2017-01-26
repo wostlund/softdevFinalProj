@@ -5,7 +5,8 @@ console.log("asgnhjktdsgrr");
                  //'price' : i[1].innerHTML,
                  'link' : i[2].href,
                 };
-    if(document.getElementById("wish").innerHTML == "Remove From Wishlist"){
+    x = x.concat("w");
+    if(document.getElementById(x).innerHTML == "Remove From Wishlist"){
         input['task'] = 'remove';
     }else{
         input['task'] = 'add';
@@ -17,10 +18,10 @@ console.log("asgnhjktdsgrr");
 	type: 'GET',
 	data: input,
 	success: function( d ) {
-        if(document.getElementById("wish").innerHTML == "Remove From Wishlist"){
-            document.getElementById("wish").innerHTML = "Add to Wishlist";
+        if(document.getElementById(x).innerHTML == "Remove From Wishlist"){
+            document.getElementById(x).innerHTML = "Add to Wishlist";
         }else{
-            document.getElementById("wish").innerHTML = "Remove From Wishlist";
+            document.getElementById(x).innerHTML = "Remove From Wishlist";
         }
     }
     });
@@ -40,7 +41,8 @@ function shoppinglist(x) {
                  //'price' : i[1].innerHTML,
                  'link' : i[2].href,
                 };
-    if(document.getElementById("shop").innerHTML == "Remove From Shopping list"){
+    x = x.concat("s");
+    if(document.getElementById(x).innerHTML == "Remove From Shopping list"){
         input['task'] = 'remove';
     }else{
         input['task'] = 'add';
@@ -52,10 +54,10 @@ function shoppinglist(x) {
 	type: 'GET',
 	data: input,
 	success: function( d ) {
-                if(document.getElementById("shop").innerHTML == "Remove From Shopping list"){
-            document.getElementById("shop").innerHTML = "Add to Shopping list";
+                if(document.getElementById(x).innerHTML == "Remove From Shopping list"){
+            document.getElementById(x).innerHTML = "Add to Shopping list";
         }else{
-            document.getElementById("shop").innerHTML = "Remove From Shopping list";
+            document.getElementById(x).innerHTML = "Remove From Shopping list";
         }
     }
     });
