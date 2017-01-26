@@ -33,7 +33,7 @@ def logout():
 def login():
 	form = request.form
 	if ("register" in form):
-		if (auth.register(form["name"], form["username"], form["password"]) == 0):
+		if (form['password'] == form['password2'] and auth.register(form["name"], form["username"], form["password"]) == 0):
 			return render_template('login.html', title = "Login", message = "Your account was successfully registered!");
 		else:
 			return render_template('login.html', title = "Login", message = "Your registration is invalid!");
