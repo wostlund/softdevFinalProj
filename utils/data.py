@@ -196,7 +196,7 @@ def remove_list(listtype, username, itemname, link):
         db = connect()
         c = db.cursor()
         username = username.lower()
-        req = "DELETE FROM %ss \
+        req = "DELETE FROM %s \
                WHERE username == '%s' AND itemname == '%s' AND link == '%s'"%(listtype, username, itemname, link)
         c.execute(req)
         disconnect(db)
