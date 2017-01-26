@@ -61,10 +61,10 @@ def add_user(username, password, name):
         return False
 
 def add_group(username, groupname, budget, date, users):
-    #try:
+    try:
         db = connect()
         c = db.cursor()
-        username = username.lower()
+        username = username.lower().strip()
         gid = (int)(largest_groupid()) + 1
 
         # Creating Group
@@ -76,22 +76,24 @@ def add_group(username, groupname, budget, date, users):
         # Adding Members
         users = parse_textarea(users)
         add_user_to_group(username, gid)
-        print users
+        print users # Debugging
         for entry in users:
-            entry = entry.lower()
-            add_user_to_group(entry, gid)
+            entry = entry.lower().strip()
+            print add_user_to_group(entry, gid) # Debugging
 
         # Shuffling Members
-        #shuffle_group(gid)
+        if (shuffle_group(gid) == False):
+            remove_group(gid)
+            return -1 # Impossible Shuffle
         
-        print get_group_data(gid)
+        print get_group_data(gid) # Debugging
         return gid
-    #except:
-    #    return -1
+    except:
+        return -2
 
 # Untested
 def add_blacklist(username, ignoreuser):
-    #try:
+    try:
         username = username.lower()
         ignoreuser = ignoreuser.lower()
         if (username == ignoreuser):
@@ -107,7 +109,7 @@ def add_blacklist(username, ignoreuser):
             disconnect(db)
             return True
         return False
-    #except:
+    except:
         return False
     
 # Untested
@@ -158,13 +160,12 @@ def add_user_to_group(username, groupid):
     try:
         db = connect()
         c = db.cursor()
-        username = username.lower()
+        # username = username.lower().strip() # Should be lowercase already.
         if (user_exists(username) == 0):
             return False
         req = "INSERT INTO groups VALUES \
                (%s, '%s', '%s')"%(groupid, username, username) # Unshuffled
         c.execute(req)
-        shuffle_group(groupid) # Shuffled
         req = "UPDATE groupdata \
                SET members = members + 1 \
                WHERE groupid = %s"%(groupid)
@@ -197,6 +198,21 @@ def remove_list(listtype, username, itemname, link):
         username = username.lower()
         req = "DELETE FROM %ss \
                WHERE username == '%s' AND itemname == '%s' AND link == '%s'"%(listtype, username, itemname, link)
+        c.execute(req)
+        disconnect(db)
+        return True
+    except:
+        return False
+
+def remove_group(gid):
+    try:
+        db = connect()
+        c = db.cursor()
+        req = "DELETE FROM groups \
+               WHERE groupid == %s"%(gid)
+        c.execute(req)
+        req = "DELETE FROM groupdata \
+               WHERE groupid == %s"%(gid)
         c.execute(req)
         disconnect(db)
         return True
@@ -361,7 +377,7 @@ def get_blacklist(username): # Username Of Person Logged In
 # Database - Data Modification
 # ==========================================================================
 def shuffle_group(groupid):
-    #try:
+    try:
         db = connect()
         c = db.cursor()
 
@@ -467,7 +483,7 @@ def shuffle_group(groupid):
         '''
         disconnect(db)
         return retval
-    #except:
+    except:
         return False
     
 # Helper Functions

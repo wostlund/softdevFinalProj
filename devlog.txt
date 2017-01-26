@@ -204,3 +204,9 @@ zichengz -- 2017-01-25 17:54
 - Add checks to several functions
   - No duplicate blacklist entries
   - No duplicate usernames when registering
+
+zichengZ -- 2017-01-25 19:55
+- Fix bug with group creation and shuffling
+- Remove debugging statements
+- Automatically shuffle groups upon creation
+- Prevent group from being created if shuffling fails
